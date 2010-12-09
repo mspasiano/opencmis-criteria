@@ -1,7 +1,7 @@
 package it.spasia.opencmis.criteria;
 
 /*
- * Copyright 2010 Marco Spasiano (maro.spasiano@gmail.com)
+ * Copyright 2010 Marco Spasiano (marco.spasiano@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import java.io.Serializable;
 /**
  * Specifies order element of CMIS query.
  *
- * @author <a href="mailto:maro.spasiano@gmail.com">Marco Spasiano</a>
+ * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
 public class Order implements Serializable

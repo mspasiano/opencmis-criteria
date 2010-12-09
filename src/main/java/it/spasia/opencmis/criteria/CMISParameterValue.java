@@ -1,7 +1,7 @@
 package it.spasia.opencmis.criteria;
 
 /*
- * Copyright 2010 Marco Spasiano (maro.spasiano@gmail.com)
+ * Copyright 2010 Marco Spasiano (marco.spasiano@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import java.io.Serializable;
  * Interface for query parameter value holder. It's responsibility is to call
  * proper javax.persistence.Query setParameter method.
  *
- * @author <a href="mailto:maro.spasiano@gmail.com">Marco Spasiano</a>
+ * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
 public interface CMISParameterValue<T extends Object> extends Serializable

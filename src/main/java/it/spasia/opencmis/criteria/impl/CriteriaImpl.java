@@ -1,7 +1,7 @@
 package it.spasia.opencmis.criteria.impl;
 
 /*
- * Copyright 2010 Marco Spasiano (maro.spasiano@gmail.com)
+ * Copyright 2010 Marco Spasiano (marco.spasiano@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ import org.apache.chemistry.opencmis.client.api.Session;
  * Default implementation of it.spasia.opencmis.criteria.Criteria and
  * it.spasia.opencmis.criteria.CMISContext including subcriteria logic.
  *
- * @author <a href="mailto:maro.spasiano@gmail.com">Marco Spasiano</a>
+ * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
 public class CriteriaImpl

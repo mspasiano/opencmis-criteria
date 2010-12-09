@@ -1,7 +1,7 @@
 
 
 /*
- * Copyright 2010 Marco Spasiano (maro.spasiano@gmail.com)
+ * Copyright 2010 Marco Spasiano (marco.spasiano@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
  * This package contains classes used to build queries in object-oriented way.
  * The API copies in most parts Hibernate Criteria API.
  *
- * @author <a href="mailto:maro.spasiano@gmail.com">Marco Spasiano</a>
+ * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
 package it.spasia.opencmis.criteria;

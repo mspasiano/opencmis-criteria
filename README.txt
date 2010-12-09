@@ -1,4 +1,4 @@
- * Copyright 2010 Marco Spasiano (maro.spasiano@gmail.com)
+ * Copyright 2010 Marco Spasiano (marco.spasiano@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
