@@ -1,7 +1,7 @@
 package it.spasia.opencmis.criteria.restrictions;
 
 /*
- * Copyright 2010 Marco Spasiano (spasia@libero.it)
+ * Copyright 2010 Marco Spasiano (maro.spasiano@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import it.spasia.opencmis.criteria.Utils;
  * Represents simple expression in form of
  * <code>property operator value</code>
  *
- * @author <a href="mailto:spasia@libero.it">Marco Spasiano</a>
+ * @author <a href="mailto:maro.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
 public class SimpleExpression implements Criterion

@@ -1,7 +1,7 @@
 package it.spasia.opencmis.criteria.transformers;
 
 /*
- * Copyright 2010 Marco Spasiano (spasia@libero.it)
+ * Copyright 2010 Marco Spasiano (maro.spasiano@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import java.util.List;
  * Generates select query fragment in form of
  * <code>SELECT typeAlias</code>.
  *
- * @author <a href="mailto:spasia@libero.it">Marco Spasiano</a>
+ * @author <a href="mailto:maro.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
 public class CMISAllPropertiesResultTransformer
