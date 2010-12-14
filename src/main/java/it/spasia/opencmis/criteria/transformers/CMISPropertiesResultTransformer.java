@@ -33,7 +33,7 @@ import java.util.List;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public class CMISAllPropertiesResultTransformer
+public class CMISPropertiesResultTransformer
     implements ResultTransformer
 {
     private static final long serialVersionUID = 1L;
@@ -42,15 +42,28 @@ public class CMISAllPropertiesResultTransformer
      *
      * @see it.spasia.opencmis.criteria.ResultTransformer#toQueryFragment(it.spasia.opencmis.criteria.CMISContext)
      */
-    public String toQueryFragment( CMISContext CMISContext )
+    public String toQueryFragment( CMISContext cmisContext )
     {
     	List<String> columns = new ArrayList<String>();
     	StringBuilder result = new StringBuilder("SELECT ");
-    	columns.add(CMISContext.getTypeAlias()+".*");
-        for ( Criteria sc : CMISContext.getSubcriteriaElements() )
-        {
-            columns.add(sc.getTypeAlias()+".*");
-        }
+    	if (cmisContext.getColumns().isEmpty()){
+        	columns.add(cmisContext.getTypeAlias()+".*");
+            for ( Criteria sc : cmisContext.getSubcriteriaElements() )
+            {
+                columns.add(sc.getTypeAlias()+".*");
+            }
+    	}else{
+    		for (String column : cmisContext.getColumns()) {
+            	columns.add(cmisContext.getTypeAlias()+"."+column);
+			}
+            for ( Criteria sc : cmisContext.getSubcriteriaElements() )
+            {
+            	for (String subColumn : sc.getColumns()) {
+            		columns.add(sc.getTypeAlias()+"."+subColumn);
+				}
+                columns.add(sc.getTypeAlias()+".*");
+            }
+    	}
         result.append(Utils.concatenate(", ", columns));
         return result.toString();
     }

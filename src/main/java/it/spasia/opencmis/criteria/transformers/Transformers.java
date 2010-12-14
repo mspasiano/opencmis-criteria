@@ -41,6 +41,6 @@ public class Transformers
      */
     public static ResultTransformer rootType()
     {
-        return new CMISAllPropertiesResultTransformer();
+        return new CMISPropertiesResultTransformer();
     }
 }

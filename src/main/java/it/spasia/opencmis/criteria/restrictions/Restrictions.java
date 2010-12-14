@@ -327,6 +327,16 @@ public class Restrictions
     	return new ContainsExpression( Utils.constructCMISParameterValue( value ));
     }
 
+    public static Criterion inFolder(String value )
+    {
+    	return new InFolderExpression( Utils.constructCMISParameterValue( value ));
+    }
+
+    public static Criterion inTree(String value )
+    {
+    	return new InTreeExpression( Utils.constructCMISParameterValue( value ));
+    }
+    
     /**
      * Checks specified property in IS NOT NULL expression.
      *

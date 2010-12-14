@@ -18,13 +18,12 @@ package it.spasia.opencmis.criteria.impl;
  * $Id: CriteriaImpl.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.spasia.opencmis.criteria.Criteria;
-import it.spasia.opencmis.criteria.Criterion;
-import it.spasia.opencmis.criteria.FetchEntry;
-import it.spasia.opencmis.criteria.JoinType;
-import it.spasia.opencmis.criteria.Order;
 import it.spasia.opencmis.criteria.CMISContext;
 import it.spasia.opencmis.criteria.CMISParameterValue;
+import it.spasia.opencmis.criteria.Criteria;
+import it.spasia.opencmis.criteria.Criterion;
+import it.spasia.opencmis.criteria.JoinType;
+import it.spasia.opencmis.criteria.Order;
 import it.spasia.opencmis.criteria.ResultTransformer;
 import it.spasia.opencmis.criteria.Utils;
 import it.spasia.opencmis.criteria.transformers.Transformers;
@@ -98,7 +97,7 @@ public class CriteriaImpl
     /**
      * Holds all criteria's and subcriterias' fetch elements.
      */
-    private final List<FetchEntry> fetchElements = new ArrayList<FetchEntry>();
+    private final List<String> columns = new ArrayList<String>();
 
     /**
      * Result transformer (SELECT clause generator) of this criteria.
@@ -265,10 +264,18 @@ public class CriteriaImpl
      *
      * @see it.spasia.opencmis.criteria.CMISContext#getFetchElements()
      */
-    public List<FetchEntry> getFetchElements()
+    public List<String> getColumns()
     {
-        return Collections.unmodifiableList( this.fetchElements );
+        return Collections.unmodifiableList( this.columns );
     }
+
+	public void addColumn(String propertyName) {
+		columns.add(propertyName);
+	}
+
+	public void removeColumn(String propertyName) {
+		columns.remove(propertyName);
+	}
 
     /*
      * (non-Javadoc)
@@ -674,16 +681,6 @@ public class CriteriaImpl
         /*
          * (non-Javadoc)
          *
-         * @see it.spasia.opencmis.criteria.CMISContext#getFetchElements()
-         */
-        public List<FetchEntry> getFetchElements()
-        {
-            return CriteriaImpl.this.getFetchElements();
-        }
-
-        /*
-         * (non-Javadoc)
-         *
          * @see it.spasia.opencmis.criteria.CMISContext#getCriterionElements()
          */
         public List<Criterion> getCriterionElements()
@@ -699,6 +696,34 @@ public class CriteriaImpl
         public Map<Criteria, Criterion> getCriterionJoinElements()
         {
             return CriteriaImpl.this.getCriterionJoinElements();
+        }
+
+        /*
+         * (non-Javadoc)
+         *
+         * @see it.spasia.opencmis.criteria.CMISContext#getColumns()
+         */
+        public List<String> getColumns()
+        {
+            return CriteriaImpl.this.getColumns();
+        }
+
+        /*
+         * (non-Javadoc)
+         *
+         * @see it.spasia.opencmis.criteria.CMISContext#addColumn()
+         */
+        public void addColumn(String propertyName){
+        	CriteriaImpl.this.columns.add(propertyName);
+        }
+
+        /*
+         * (non-Javadoc)
+         *
+         * @see it.spasia.opencmis.criteria.CMISContext#removeColumn()
+         */
+        public void removeColumn(String propertyName){
+        	CriteriaImpl.this.columns.remove(propertyName);
         }
         
         /*
@@ -776,5 +801,4 @@ public class CriteriaImpl
             return buffer.toString();
         }
     }
-
 }

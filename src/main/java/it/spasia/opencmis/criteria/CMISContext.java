@@ -78,10 +78,10 @@ public interface CMISContext extends Serializable
     List<Criteria> getSubcriteriaElements();
 
     /**
-     * @return fetch elements of processed criteria
+     * @return columns of processed criteria
      */
-    List<FetchEntry> getFetchElements();
-
+    List<String> getColumns();
+    
     /**
      * @return criterion elements of processed criteria
      */

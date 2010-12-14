@@ -19,6 +19,7 @@ package it.spasia.opencmis.criteria;
  */
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.apache.chemistry.opencmis.client.api.ItemIterable;
 import org.apache.chemistry.opencmis.client.api.OperationContext;
@@ -146,5 +147,19 @@ public interface Criteria extends Serializable
      * @param path assocation path to prefix
      * @return assocation path prefixed if needed
      */
-    String prefix( String path );    
+    String prefix( String path );
+    /**
+     * @return columns of processed criteria
+     */
+    List<String> getColumns();
+
+    /**
+     * add column of processed criteria
+     */
+    void addColumn(String propertyName);
+
+    /**
+     * remove column of processed criteria
+     */
+    void removeColumn(String propertyName);
 }
