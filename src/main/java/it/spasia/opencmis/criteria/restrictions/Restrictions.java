@@ -297,6 +297,20 @@ public class Restrictions
      *            values compared with property
      * @return IN expression
      */
+    public static Criterion any( String propertyName, Object value)
+    {
+        return new ANYExpression( propertyName, Utils.constructCMISParameterValue( value ));
+    }
+    
+    /**
+     * Compares specified property to provided values in IN expression.
+     *
+     * @param propertyName
+     *            property to compare
+     * @param values
+     *            values compared with property
+     * @return IN expression
+     */
     public static Criterion in( String propertyName, Collection<Object> values )
     {
         Object[] valuesArray = values.toArray();

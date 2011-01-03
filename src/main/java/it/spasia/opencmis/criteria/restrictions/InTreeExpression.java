@@ -44,7 +44,7 @@ public class InTreeExpression
     	String parameterName = CMISContext.generateParameterName("inTree", value );    	
         StringBuilder buffer = new StringBuilder();
         String alias = CMISContext.getTypeAlias();
-        buffer.append( " INT_TREE " );
+        buffer.append( " IN_TREE " );
         buffer.append( " ( " );
         buffer.append( alias );
         buffer.append( " , " );
