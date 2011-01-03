@@ -54,7 +54,8 @@ public class GeneralCMISParameterValue
      */
     public void populateToQuery( String parameterName, StringBuilder query )
     {
-        query.replace(query.indexOf(parameterName) -1, query.indexOf(parameterName) + parameterName.length(), "'"+String.valueOf(this.value)+"'" );
+        query.replace(query.indexOf(parameterName) -1, query.indexOf(parameterName) + parameterName.length(), 
+        		Utils.parseParameterValue(this.value));
     }
 
     /*

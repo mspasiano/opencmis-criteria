@@ -44,7 +44,7 @@ public enum MatchMode
     {
         public String toMatchString( String pattern )
         {
-            return pattern + '%';
+            return pattern + "\\%";
         }
     },
 
@@ -55,7 +55,7 @@ public enum MatchMode
     {
         public String toMatchString( String pattern )
         {
-            return '%' + pattern;
+            return "\\%" + pattern;
         }
     },
 
@@ -66,7 +66,7 @@ public enum MatchMode
     {
         public String toMatchString( String pattern )
         {
-            return '%' + pattern + '%';
+            return "\\%" + pattern + "\\%";
         }
     };
 

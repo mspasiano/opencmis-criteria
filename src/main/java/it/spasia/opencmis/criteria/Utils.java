@@ -20,7 +20,9 @@ package it.spasia.opencmis.criteria;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Utility class with operations common for different classes.
@@ -30,7 +32,13 @@ import java.util.Iterator;
  */
 public class Utils
 {
-
+	public static String APOSTROPHE = "'";
+	public static Map<String,String> REP_CHAR_IN_PARAM_VALUE = new HashMap<String, String>();
+	static{
+		REP_CHAR_IN_PARAM_VALUE.put(APOSTROPHE, "\\'");
+		REP_CHAR_IN_PARAM_VALUE.put("_", "\\_");
+		REP_CHAR_IN_PARAM_VALUE.put("\\", "\\\\");
+	}
     /**
      * Checks if specified assocation path is qualified or not (basically if it
      * contains dot or not) and qualifies path when needed.
@@ -95,5 +103,13 @@ public class Utils
     	if (value instanceof Date)
     		return new DateCMISParameterValue((Date)value);
     	return new GeneralCMISParameterValue(value);
+    }
+    
+    public static String parseParameterValue(Object value){
+    	String parameterValue = String.valueOf(value);
+    	for (String key : REP_CHAR_IN_PARAM_VALUE.keySet()) {
+    		parameterValue = parameterValue.replace(key, REP_CHAR_IN_PARAM_VALUE.get(key));
+		}
+    	return APOSTROPHE+parameterValue+APOSTROPHE;
     }
 }
