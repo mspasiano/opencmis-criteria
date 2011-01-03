@@ -37,7 +37,6 @@ public class Utils
 	static{
 		REP_CHAR_IN_PARAM_VALUE.put(APOSTROPHE, "\\'");
 		REP_CHAR_IN_PARAM_VALUE.put("_", "\\_");
-		REP_CHAR_IN_PARAM_VALUE.put("\\", "\\\\");
 	}
     /**
      * Checks if specified assocation path is qualified or not (basically if it
