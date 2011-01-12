@@ -247,6 +247,17 @@ public class Restrictions
                                       Utils.constructCMISParameterValue( low ),
                                       Utils.constructCMISParameterValue( high ) );
     }
+    
+    public static Criterion between( String propertyName, Object low,
+            Object high, boolean negate, boolean lowEq, boolean highEq)
+	{
+		return new BetweenExpression( propertyName,
+		             Utils.constructCMISParameterValue( low ),
+		             Utils.constructCMISParameterValue( high ),
+		             negate,
+		             lowEq,
+		             highEq);
+	}
 
     /**
      * Compares specified property to provided values in NOT BETWEEN expression.
@@ -265,7 +276,9 @@ public class Restrictions
         return new BetweenExpression( propertyName,
                                       Utils.constructCMISParameterValue( low ),
                                       Utils.constructCMISParameterValue( high ),
-                                      true );
+                                      true,
+                                      true,
+                                      true);
     }
 
     /**

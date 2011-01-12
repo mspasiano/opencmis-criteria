@@ -1,6 +1,5 @@
 package it.spasia.opencmis.criteria;
 
-import it.spasia.opencmis.criteria.restrictions.MatchMode;
 import it.spasia.opencmis.criteria.restrictions.Restrictions;
 
 import java.util.HashMap;

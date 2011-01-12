@@ -54,6 +54,16 @@ public class BetweenExpression
     private final boolean negate;
 
     /**
+     * Low boundary for eq.
+     */
+    private final boolean lowEq;
+
+    /**
+     * High boundary for eq.
+     */
+    private final boolean highEq;
+    
+    /**
      * Construct expression for specified expression.
      *
      * @param aPropertyName
@@ -64,11 +74,12 @@ public class BetweenExpression
      *            between high boundary value
      */
     protected BetweenExpression( String aPropertyName,
-                                 CMISParameterValue<?> lowValue,
-                                 CMISParameterValue<?> highValue )
-    {
-        this( aPropertyName, lowValue, highValue, false );
-    }
+            CMISParameterValue<?> lowValue,
+            CMISParameterValue<?> highValue )
+	{
+		this( aPropertyName, lowValue, highValue, false, true, true);
+	}
+
 
     /**
      * Construct expression for specified expression.
@@ -84,12 +95,17 @@ public class BetweenExpression
      */
     protected BetweenExpression( String aPropertyName,
                                  CMISParameterValue<?> lowValue,
-                                 CMISParameterValue<?> highValue, boolean negate )
+                                 CMISParameterValue<?> highValue, 
+                                 boolean negate,
+                                 boolean lowEq,
+                                 boolean highEq)
     {
         this.propertyName = aPropertyName;
         this.low = lowValue;
         this.high = highValue;
         this.negate = negate;
+        this.lowEq = lowEq;
+        this.highEq = highEq;
     }
 
     /*
@@ -105,16 +121,22 @@ public class BetweenExpression
             CMISContext.generateParameterName( propertyName, high );
 
         StringBuilder buffer = new StringBuilder();
-
         buffer.append( this.propertyName );
         buffer.append( " " );
         if ( negate )
-        {
-            buffer.append( "NOT " );
-        }
-        buffer.append( "BETWEEN :" );
+        	buffer.append( lowEq?SimpleExpressionOperator.LE: SimpleExpressionOperator.LT);
+    	else	
+        	buffer.append( lowEq?SimpleExpressionOperator.GE: SimpleExpressionOperator.GT);
+        buffer.append( " " );
         buffer.append( lowParameterName );
-        buffer.append( " AND :" );
+        buffer.append( " AND " );
+        buffer.append( this.propertyName );
+        buffer.append( " " );
+        if ( negate )
+        	buffer.append( highEq?SimpleExpressionOperator.GE: SimpleExpressionOperator.GT);
+        else
+        	buffer.append( highEq?SimpleExpressionOperator.LE: SimpleExpressionOperator.LT);
+        buffer.append( " " );
         buffer.append( highParameterName );
 
         return buffer.toString();
