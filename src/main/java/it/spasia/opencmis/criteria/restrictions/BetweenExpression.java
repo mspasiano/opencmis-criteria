@@ -121,22 +121,31 @@ public class BetweenExpression
             CMISContext.generateParameterName( propertyName, high );
 
         StringBuilder buffer = new StringBuilder();
-        buffer.append( this.propertyName );
-        buffer.append( " " );
+        final String property = CMISContext.prefix( this.propertyName );
+        
+        buffer.append( property );
+        buffer.append( ' ' );
         if ( negate )
-        	buffer.append( lowEq?SimpleExpressionOperator.LE: SimpleExpressionOperator.LT);
+        	buffer.append( lowEq?SimpleExpressionOperator.LE.getStringRepresentation(): 
+        		SimpleExpressionOperator.LT.getStringRepresentation());
     	else	
-        	buffer.append( lowEq?SimpleExpressionOperator.GE: SimpleExpressionOperator.GT);
-        buffer.append( " " );
+        	buffer.append( lowEq?SimpleExpressionOperator.GE.getStringRepresentation(): 
+        		SimpleExpressionOperator.GT.getStringRepresentation());
+        buffer.append( ' ' );
+        buffer.append( ":" );
         buffer.append( lowParameterName );
         buffer.append( " AND " );
-        buffer.append( this.propertyName );
-        buffer.append( " " );
+
+        buffer.append( property );
+        buffer.append( ' ' );
         if ( negate )
-        	buffer.append( highEq?SimpleExpressionOperator.GE: SimpleExpressionOperator.GT);
+        	buffer.append( highEq?SimpleExpressionOperator.GE.getStringRepresentation(): 
+        		SimpleExpressionOperator.GT.getStringRepresentation());
         else
-        	buffer.append( highEq?SimpleExpressionOperator.LE: SimpleExpressionOperator.LT);
-        buffer.append( " " );
+        	buffer.append( highEq?SimpleExpressionOperator.LE.getStringRepresentation(): 
+        		SimpleExpressionOperator.LT.getStringRepresentation());
+        buffer.append( ' ' );
+        buffer.append( ":" );
         buffer.append( highParameterName );
 
         return buffer.toString();
