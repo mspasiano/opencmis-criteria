@@ -440,7 +440,8 @@ public class CriteriaImpl
          * Specifies join type to use joining from parent criteria.
          */
         private final JoinType joinType;
-
+        
+        private final List<String> columns = new ArrayList<String>();
         /**
          * Constructor providing all possible parameters.
          *
@@ -705,7 +706,7 @@ public class CriteriaImpl
          */
         public List<String> getColumns()
         {
-            return CriteriaImpl.this.getColumns();
+            return columns;
         }
 
         /*
@@ -714,7 +715,7 @@ public class CriteriaImpl
          * @see it.spasia.opencmis.criteria.CMISContext#addColumn()
          */
         public void addColumn(String propertyName){
-        	CriteriaImpl.this.columns.add(propertyName);
+        	columns.add(propertyName);
         }
 
         /*
@@ -723,7 +724,7 @@ public class CriteriaImpl
          * @see it.spasia.opencmis.criteria.CMISContext#removeColumn()
          */
         public void removeColumn(String propertyName){
-        	CriteriaImpl.this.columns.remove(propertyName);
+        	columns.remove(propertyName);
         }
         
         /*

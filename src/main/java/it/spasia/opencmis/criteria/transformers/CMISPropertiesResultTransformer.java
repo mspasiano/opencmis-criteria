@@ -58,10 +58,12 @@ public class CMISPropertiesResultTransformer
 			}
             for ( Criteria sc : cmisContext.getSubcriteriaElements() )
             {
-            	for (String subColumn : sc.getColumns()) {
-            		columns.add(sc.getTypeAlias()+"."+subColumn);
-				}
-                columns.add(sc.getTypeAlias()+".*");
+            	if (sc.getColumns().isEmpty())
+                    columns.add(sc.getTypeAlias()+".*");
+            	else
+	            	for (String subColumn : sc.getColumns()) {
+	            		columns.add(sc.getTypeAlias()+"."+subColumn);
+					}
             }
     	}
         result.append(Utils.concatenate(", ", columns));
