@@ -27,13 +27,13 @@ public class QueryTest {
 		Map<String, String> parameter = new HashMap<String, String>();
 
 		// user credentials
-		parameter.put(SessionParameter.USER, "guest");
-		parameter.put(SessionParameter.PASSWORD, "guest");
+		parameter.put(SessionParameter.USER, "admin");
+		parameter.put(SessionParameter.PASSWORD, "admin");
 
 		// connection settings
-		parameter.put(SessionParameter.ATOMPUB_URL, "http://localhost:8080/alfresco/service/cmis");
+		parameter.put(SessionParameter.ATOMPUB_URL, "http://cmis.alfresco.com/service/cmis");
 		parameter.put(SessionParameter.BINDING_TYPE, BindingType.ATOMPUB.value());
-		parameter.put(SessionParameter.REPOSITORY_ID, "de0f56a7-dd2f-4169-8686-192560cf7303");
+		parameter.put(SessionParameter.REPOSITORY_ID, f.getRepositories(parameter).get(0).getId());
 
 		// session locale
 		parameter.put(SessionParameter.LOCALE_ISO3166_COUNTRY, "IT");

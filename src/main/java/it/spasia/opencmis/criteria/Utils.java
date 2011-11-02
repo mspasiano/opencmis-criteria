@@ -36,7 +36,6 @@ public class Utils
 	public static Map<String,String> REP_CHAR_IN_PARAM_VALUE = new HashMap<String, String>();
 	static{
 		REP_CHAR_IN_PARAM_VALUE.put(APOSTROPHE, "\\'");
-		REP_CHAR_IN_PARAM_VALUE.put("_", "\\_");
 	}
     /**
      * Checks if specified assocation path is qualified or not (basically if it
