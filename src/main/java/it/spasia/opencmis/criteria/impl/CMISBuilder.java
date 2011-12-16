@@ -36,6 +36,7 @@ import org.apache.chemistry.opencmis.client.api.ItemIterable;
 import org.apache.chemistry.opencmis.client.api.OperationContext;
 import org.apache.chemistry.opencmis.client.api.QueryResult;
 import org.apache.chemistry.opencmis.client.api.Session;
+import org.apache.chemistry.opencmis.commons.data.ExtensionsData;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -65,7 +66,7 @@ class CMISBuilder implements Serializable
     }
 
     ItemIterable<QueryResult> executeQuery(boolean searchAllVersions, 
-				OperationContext context)
+				OperationContext context, ExtensionsData extension)
     {
         this.collectJoinElements();
         this.collectWhereElements();
@@ -79,7 +80,7 @@ class CMISBuilder implements Serializable
         }
         if (logger.isDebugEnabled())
         	logger.debug(statement);
-        return cmisSession.query(statement.toString(), searchAllVersions, context);
+        return cmisSession.query(statement.toString(), searchAllVersions, context, extension);
     }
 
     private void collectJoinElements()

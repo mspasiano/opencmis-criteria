@@ -93,7 +93,7 @@ Unfortunately, OpenCMIS query specification doesn't contain Criteria API that is
 		<dependency>
 		  <groupId>org.apache.chemistry.opencmis</groupId>
 		  <artifactId>chemistry-opencmis-client-impl</artifactId>
-		  <version>0.1.0-incubating</version>
+		  <version>${opencmis.version}</version>
 		</dependency>	
         <dependency>
             <groupId>junit</groupId>
@@ -140,4 +140,7 @@ Unfortunately, OpenCMIS query specification doesn't contain Criteria API that is
             </plugin>
         </plugins>
     </reporting>
+    <properties>
+    	<opencmis.version>0.6.0</opencmis.version>
+    </properties>
 </project>

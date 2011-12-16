@@ -38,6 +38,7 @@ import org.apache.chemistry.opencmis.client.api.ItemIterable;
 import org.apache.chemistry.opencmis.client.api.OperationContext;
 import org.apache.chemistry.opencmis.client.api.QueryResult;
 import org.apache.chemistry.opencmis.client.api.Session;
+import org.apache.chemistry.opencmis.commons.data.ExtensionsData;
 
 
 /**
@@ -216,7 +217,12 @@ public class CriteriaImpl
      */
     public ItemIterable<QueryResult> executeQuery( Session cmisSession , boolean searchAllVersions, OperationContext context)
     {
-        return executeQuery( this, cmisSession, searchAllVersions, context );
+        return executeQuery( this, cmisSession, searchAllVersions, context, null);
+    }
+
+    public ItemIterable<QueryResult> executeQuery( Session cmisSession , boolean searchAllVersions, OperationContext context, ExtensionsData extension)
+    {
+        return executeQuery( this, cmisSession, searchAllVersions, context, extension);
     }
 
     /**
@@ -231,10 +237,11 @@ public class CriteriaImpl
     private ItemIterable<QueryResult> executeQuery( CMISContext cmisContext,
     		 					Session cmisSession , 
     		 					boolean searchAllVersions, 
-    		 					OperationContext context)
+    		 					OperationContext context,
+    		 					ExtensionsData extension)
     {
         CMISBuilder builder = new CMISBuilder( cmisContext, cmisSession );
-        ItemIterable<QueryResult> result = builder.executeQuery(searchAllVersions, context);
+        ItemIterable<QueryResult> result = builder.executeQuery(searchAllVersions, context, extension);
 
         return result;
     }
@@ -563,9 +570,14 @@ public class CriteriaImpl
          */
         public ItemIterable<QueryResult> executeQuery( Session cmisSession , boolean searchAllVersions, OperationContext context)
         {
-            return CriteriaImpl.this.executeQuery( this, cmisSession, searchAllVersions, context);
+            return CriteriaImpl.this.executeQuery( this, cmisSession, searchAllVersions, context, null);
         }
 
+        public ItemIterable<QueryResult> executeQuery( Session cmisSession , boolean searchAllVersions, OperationContext context, ExtensionsData extension)
+        {
+            return CriteriaImpl.this.executeQuery( this, cmisSession, searchAllVersions, context, extension);
+        }
+        
         /**
          * Returns join type used for joining this subcriteria.
          *

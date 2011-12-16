@@ -25,6 +25,7 @@ import org.apache.chemistry.opencmis.client.api.ItemIterable;
 import org.apache.chemistry.opencmis.client.api.OperationContext;
 import org.apache.chemistry.opencmis.client.api.QueryResult;
 import org.apache.chemistry.opencmis.client.api.Session;
+import org.apache.chemistry.opencmis.commons.data.ExtensionsData;
 
 /**
  * Root interface for creating criteria based queries.
@@ -120,6 +121,8 @@ public interface Criteria extends Serializable
      */
     ItemIterable<QueryResult> executeQuery( Session cmisSession , boolean searchAllVersions, OperationContext context);
 
+    ItemIterable<QueryResult> executeQuery( Session cmisSession , boolean searchAllVersions, OperationContext context, ExtensionsData extension);
+    
     /**
      * Returns type name of root criteria.
      *
