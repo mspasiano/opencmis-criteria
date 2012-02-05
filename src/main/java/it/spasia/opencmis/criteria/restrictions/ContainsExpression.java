@@ -61,7 +61,7 @@ public class ContainsExpression
         buffer.append( " , " );
         if (propertyName !=  null){
             buffer.append( "'" );
-            buffer.append( parameterName );
+            buffer.append( propertyName );
             buffer.append( ":\'" );
         }
         buffer.append(parameterName);
