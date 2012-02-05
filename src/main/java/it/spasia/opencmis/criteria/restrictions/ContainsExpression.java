@@ -54,7 +54,9 @@ public class ContainsExpression
 
     public String toQueryFragment( CMISContext CMISContext )
     {
-    	String parameterName = CMISContext.generateParameterName("contains", value );    	
+    	String parameterName = null;
+    	if (value != null)
+    		parameterName = CMISContext.generateParameterName("contains", value );    	
         StringBuilder buffer = new StringBuilder();
         String alias = CMISContext.getTypeAlias();
         buffer.append( " CONTAINS " );
