@@ -354,6 +354,11 @@ public class Restrictions
     	return new ContainsExpression( Utils.constructCMISParameterValue( value ));
     }
 
+    public static Criterion contains(String propertyName, String value )
+    {
+    	return new ContainsExpression(propertyName, Utils.constructCMISParameterValue( value ));
+    }
+
     public static Criterion inFolder(String value )
     {
     	return new InFolderExpression( Utils.constructCMISParameterValue( value ));

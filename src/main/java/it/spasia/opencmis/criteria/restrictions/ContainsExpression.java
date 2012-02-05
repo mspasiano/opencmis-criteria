@@ -32,12 +32,22 @@ public class ContainsExpression
     implements Criterion
 {
     private static final long serialVersionUID = 1L;
+    /**
+     * Property which value is being compared.
+     */
+    private final String propertyName;
 
     private CMISParameterValue<?> value;
+
+    protected ContainsExpression(String properyName, CMISParameterValue<?> aValue )
+    {
+    	this.propertyName = properyName;
+    	this.value = aValue;
+    }
     
     protected ContainsExpression(CMISParameterValue<?> aValue )
     {
-    	this.value = aValue;
+    	this(null, aValue);
     }
 
     public String toQueryFragment( CMISContext CMISContext )
@@ -49,7 +59,15 @@ public class ContainsExpression
         buffer.append( " ( " );
         buffer.append( alias );
         buffer.append( " , " );
+        if (propertyName !=  null){
+            buffer.append( "'" );
+            buffer.append( parameterName );
+            buffer.append( ":\'" );
+        }
         buffer.append(parameterName);
+        if (propertyName !=  null){
+            buffer.append( "\''" );
+        }
         buffer.append( " ) " );
         return buffer.toString();
     }
