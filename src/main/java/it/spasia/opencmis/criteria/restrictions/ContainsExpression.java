@@ -62,11 +62,11 @@ public class ContainsExpression
         if (propertyName !=  null){
             buffer.append( "'" );
             buffer.append( propertyName );
-            buffer.append( ":\'" );
+            buffer.append( ":\\'" );
         }
         buffer.append(parameterName);
         if (propertyName !=  null){
-            buffer.append( "\''" );
+            buffer.append( "\\''" );
         }
         buffer.append( " ) " );
         return buffer.toString();
