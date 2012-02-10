@@ -119,9 +119,11 @@ public class Utils
 
     public static String parseParameterValueWithoutAPOSTROPHE(Object value){
     	String parameterValue = String.valueOf(value);
-    	for (String key : REP_CHAR_IN_PARAM_VALUE.keySet()) {
-    		parameterValue = parameterValue.replace(key, REP_CHAR_IN_PARAM_VALUE.get(key));
-		}
+		parameterValue = parameterValue.replace("'", " ");
+
+//    	for (String key : REP_CHAR_IN_PARAM_VALUE.keySet()) {
+//    		parameterValue = parameterValue.replace(key, REP_CHAR_IN_PARAM_VALUE.get(key));
+//		}
     	return parameterValue;
     }
     
