@@ -102,6 +102,12 @@ public class Utils
     		return new DateCMISParameterValue((Date)value);
     	return new GeneralCMISParameterValue(value);
     }
+
+    public static CMISParameterValue<?> constructContainsCMISParameterValue(Object value){
+    	if (value instanceof Date)
+    		return new DateCMISParameterValue((Date)value);
+    	return new ContainsCMISParameterValue(value);
+    }
     
     public static String parseParameterValue(Object value){
     	String parameterValue = String.valueOf(value);
@@ -110,4 +116,13 @@ public class Utils
 		}
     	return APOSTROPHE+parameterValue+APOSTROPHE;
     }
+
+    public static String parseParameterValueWithoutAPOSTROPHE(Object value){
+    	String parameterValue = String.valueOf(value);
+    	for (String key : REP_CHAR_IN_PARAM_VALUE.keySet()) {
+    		parameterValue = parameterValue.replace(key, REP_CHAR_IN_PARAM_VALUE.get(key));
+		}
+    	return parameterValue;
+    }
+    
 }

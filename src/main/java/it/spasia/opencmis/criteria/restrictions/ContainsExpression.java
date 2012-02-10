@@ -36,27 +36,22 @@ public class ContainsExpression
      * Property which value is being compared.
      */
     private final String propertyName;
-    private final String propertyValue;
-
     private CMISParameterValue<?> value;
 
-    protected ContainsExpression(String properyName, String propertyValue )
+    protected ContainsExpression(String properyName, CMISParameterValue<?> aValue )
     {
     	this.propertyName = properyName;
-    	this.propertyValue = propertyValue;
+    	this.value = aValue;
     }
     
     protected ContainsExpression(CMISParameterValue<?> aValue )
     {
-    	this(null, null);
-    	this.value = aValue;
+    	this(null, aValue);
     }
 
     public String toQueryFragment( CMISContext CMISContext )
     {
-    	String parameterName = null;
-    	if (value != null)
-    		parameterName = CMISContext.generateParameterName("contains", value );    	
+    	String parameterName = CMISContext.generateParameterName("contains", value );    	
         StringBuilder buffer = new StringBuilder();
         String alias = CMISContext.getTypeAlias();
         buffer.append( " CONTAINS " );
@@ -66,11 +61,9 @@ public class ContainsExpression
         if (propertyName !=  null){
             buffer.append( "'" );
             buffer.append( propertyName );
-            buffer.append( ":\\'" );
-            buffer.append(propertyValue);
-        }else{
-            buffer.append(parameterName);
+            buffer.append( ":\\''" );
         }
+        buffer.append(parameterName);
         if (propertyName !=  null){
             buffer.append( "\\''" );
         }
