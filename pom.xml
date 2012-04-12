@@ -93,7 +93,7 @@ Unfortunately, OpenCMIS query specification doesn't contain Criteria API that is
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.chemistry.opencmis</groupId>
-			<artifactId>chemistry-opencmis-client-impl</artifactId>
+			<artifactId>chemistry-opencmis-client-impl-solr</artifactId>
 			<version>${opencmis.version}</version>
 			<scope>provided</scope>
 		</dependency>

@@ -19,6 +19,7 @@ package it.spasia.opencmis.criteria;
  */
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -110,6 +111,9 @@ public class Utils
     }
     
     public static String parseParameterValue(Object value){
+    	if (value instanceof Collection<?>){
+    		return concatenate(",", (Collection<?>)value);
+    	}
     	String parameterValue = String.valueOf(value);
     	for (String key : REP_CHAR_IN_PARAM_VALUE.keySet()) {
     		parameterValue = parameterValue.replace(key, REP_CHAR_IN_PARAM_VALUE.get(key));
