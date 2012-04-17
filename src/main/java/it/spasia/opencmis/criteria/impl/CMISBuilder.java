@@ -80,7 +80,7 @@ class CMISBuilder implements Serializable
         }
         if (logger.isDebugEnabled())
         	logger.debug(statement);
-        return cmisSession.query(statement.toString(), searchAllVersions, context, extension);
+        return cmisSession.query(statement.toString(), searchAllVersions, context);
     }
 
     private void collectJoinElements()
