@@ -8,7 +8,7 @@
 	<artifactId>opencmis-criteria</artifactId>
 	<packaging>jar</packaging>
 	<name>OpenCMIS Criteria</name>
-	<version>0.5-SNAPSHOT</version>
+	<version>1.0</version>
 	<description>
         The aim of OpenCMIS is to make CMIS simple for Java client and server developers.
 Unfortunately, OpenCMIS query specification doesn't contain Criteria API that is available for example in Hibernate for persistence.
@@ -143,6 +143,6 @@ Unfortunately, OpenCMIS query specification doesn't contain Criteria API that is
 		</plugins>
 	</reporting>
 	<properties>
-		<opencmis.version>0.6.0</opencmis.version>
+		<opencmis.version>0.7.0</opencmis.version>
 	</properties>
 </project>
