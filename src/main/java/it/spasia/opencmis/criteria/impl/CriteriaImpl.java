@@ -418,7 +418,7 @@ public class CriteriaImpl
      * CriteriaImpl class, but some are handled locally specifically to
      * subcriteria.
      *
-     * This class is instance class to provide access to enclosing <b>root<b>
+     * This class is instance class to provide access to enclosing root
      * criteria. However, parent criteria can be either CriteriaImpl or
      * Subcriteria instance.
      */
@@ -496,8 +496,7 @@ public class CriteriaImpl
          */
         public Criteria add( Criterion criterion )
         {
-            CriteriaImpl.this.add( criterion );
-
+        	CriteriaImpl.this.criterionElements.add(criterion);
             return this;
         }
 
@@ -508,8 +507,7 @@ public class CriteriaImpl
          */
         public Criteria addOrder( Order order )
         {
-            CriteriaImpl.this.addOrder( order );
-
+        	CriteriaImpl.this.orderingElements.add(order);
             return this;
         }
 

@@ -42,8 +42,6 @@ public class DateCMISParameterValue implements CMISParameterValue<Date>
      *
      * @param parameterValue
      *            value for this holder
-     * @param parameterTemporalType
-     *            temporal type of this date
      */
     public DateCMISParameterValue( Date parameterValue)
     {

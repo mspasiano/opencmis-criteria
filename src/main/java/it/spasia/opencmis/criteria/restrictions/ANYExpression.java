@@ -49,7 +49,7 @@ public class ANYExpression
      *
      * @param aPropertyName
      *            property to compare
-     * @param aValues
+     * @param aValue
      *            values for comparision
      */
     protected ANYExpression( String aPropertyName,

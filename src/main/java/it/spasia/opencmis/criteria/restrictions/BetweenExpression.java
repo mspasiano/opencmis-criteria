@@ -92,6 +92,11 @@ public class BetweenExpression
      *            between high boundary value
      * @param negate
      *            should it be NOT BETWEEN expression
+     * @param lowEq
+     *            firstValue
+     * @param highEq
+     *            secondValue
+     *
      */
     protected BetweenExpression( String aPropertyName,
                                  CMISParameterValue<?> lowValue,

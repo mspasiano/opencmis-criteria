@@ -18,13 +18,15 @@ package it.spasia.opencmis.criteria.impl;
  * $Id: CMISBuilder.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.spasia.opencmis.criteria.Criteria;
-import it.spasia.opencmis.criteria.Criterion;
-import it.spasia.opencmis.criteria.Order;
-import it.spasia.opencmis.criteria.CMISContext;
-import it.spasia.opencmis.criteria.CMISParameterValue;
-import it.spasia.opencmis.criteria.Utils;
+import it.spasia.opencmis.criteria.*;
 import it.spasia.opencmis.criteria.impl.CriteriaImpl.Subcriteria;
+import org.apache.chemistry.opencmis.client.api.ItemIterable;
+import org.apache.chemistry.opencmis.client.api.OperationContext;
+import org.apache.chemistry.opencmis.client.api.QueryResult;
+import org.apache.chemistry.opencmis.client.api.Session;
+import org.apache.chemistry.opencmis.commons.data.ExtensionsData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,23 +34,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.chemistry.opencmis.client.api.ItemIterable;
-import org.apache.chemistry.opencmis.client.api.OperationContext;
-import org.apache.chemistry.opencmis.client.api.QueryResult;
-import org.apache.chemistry.opencmis.client.api.Session;
-import org.apache.chemistry.opencmis.commons.data.ExtensionsData;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 
 /**
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-class CMISBuilder implements Serializable
-{
-    private static Log logger = LogFactory.getLog(CMISBuilder.class);
-	
+class CMISBuilder implements Serializable {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CMISBuilder.class);
+
     private static final long serialVersionUID = 1L;
 
     private final CMISContext cmisContext;
@@ -58,163 +51,133 @@ class CMISBuilder implements Serializable
     private final List<String> joinElements = new ArrayList<String>();
 
     private final List<String> whereElements = new ArrayList<String>();
-    
-    CMISBuilder( CMISContext aCMISContext, Session cmisSession )
-    {
+
+    CMISBuilder(CMISContext aCMISContext, Session cmisSession) {
         this.cmisContext = aCMISContext;
         this.cmisSession = cmisSession;
     }
 
-    ItemIterable<QueryResult> executeQuery(boolean searchAllVersions, 
-				OperationContext context, ExtensionsData extension)
-    {
+    private static String appendSpaceIfNeeded(String string) {
+        if (string != null && string.length() > 0) {
+            return " " + string;
+        } else {
+            return "";
+        }
+    }
+
+    ItemIterable<QueryResult> executeQuery(boolean searchAllVersions,
+                                           OperationContext context, ExtensionsData extension) {
         this.collectJoinElements();
         this.collectWhereElements();
 
         StringBuilder statement = this.buildQueryString();
         Map<String, CMISParameterValue<?>> parameters = this.cmisContext.getParameters();
-        for ( String parameterName : parameters.keySet() )
-        {
-        	CMISParameterValue<?> parameterValue = parameters.get( parameterName );
-        	parameterValue.populateToQuery( parameterName, statement );
+        for (String parameterName : parameters.keySet()) {
+            CMISParameterValue<?> parameterValue = parameters.get(parameterName);
+            parameterValue.populateToQuery(parameterName, statement);
         }
-        if (logger.isDebugEnabled())
-        	logger.debug(statement);
+        if (LOGGER.isDebugEnabled())
+            LOGGER.debug(statement.toString());
         return cmisSession.query(statement.toString(), searchAllVersions, context);
     }
 
-    private void collectJoinElements()
-    {
-        for ( Criteria sc : this.cmisContext.getSubcriteriaElements() )
-        {
+    private void collectJoinElements() {
+        for (Criteria sc : this.cmisContext.getSubcriteriaElements()) {
             Subcriteria subCriteria = (Subcriteria) sc;
             StringBuilder buffer = new StringBuilder();
-            buffer.append( subCriteria.getJoinType().getStringRepresentation() );
-            buffer.append( ' ' );
-            buffer.append( subCriteria.getType() );
+            buffer.append(subCriteria.getJoinType().getStringRepresentation());
+            buffer.append(' ');
+            buffer.append(subCriteria.getType());
 
-            if ( sc.getTypeAlias() != null )
-            {
-                buffer.append( " AS " );
-                buffer.append( sc.getTypeAlias() );
+            if (sc.getTypeAlias() != null) {
+                buffer.append(" AS ");
+                buffer.append(sc.getTypeAlias());
             }
             Criterion joinCriterion = this.cmisContext.getCriterionJoinElements().get(subCriteria);
-            if (joinCriterion != null){
-                buffer.append( " ON " );
+            if (joinCriterion != null) {
+                buffer.append(" ON ");
                 buffer.append(joinCriterion.toQueryFragment(this.cmisContext));
             }
-            
-            this.joinElements.add( buffer.toString() );
-            
-            
+
+            this.joinElements.add(buffer.toString());
+
+
         }
     }
 
-    private void collectWhereElements()
-    {
-        for ( Criterion c : this.cmisContext.getCriterionElements() )
-        {
-            this.whereElements.add( c.toQueryFragment( this.cmisContext ) );
+    private void collectWhereElements() {
+        for (Criterion c : this.cmisContext.getCriterionElements()) {
+            this.whereElements.add(c.toQueryFragment(this.cmisContext));
         }
     }
 
-    
-    private StringBuilder buildQueryString()
-    {
+    private StringBuilder buildQueryString() {
         StringBuilder buffer = new StringBuilder();
 
-        buffer.append( buildQuerySelectClause() );
-        buffer.append( appendSpaceIfNeeded( buildQueryFromClause() ) );
-        buffer.append( appendSpaceIfNeeded( buildQueryJoinClause() ) );
-        buffer.append( appendSpaceIfNeeded( buildQueryWhereClause() ) );
-        buffer.append( appendSpaceIfNeeded( buildQueryOrderByClause() ) );
+        buffer.append(buildQuerySelectClause());
+        buffer.append(appendSpaceIfNeeded(buildQueryFromClause()));
+        buffer.append(appendSpaceIfNeeded(buildQueryJoinClause()));
+        buffer.append(appendSpaceIfNeeded(buildQueryWhereClause()));
+        buffer.append(appendSpaceIfNeeded(buildQueryOrderByClause()));
 
         return buffer;
     }
 
-    private String buildQuerySelectClause()
-    {
-        return this.cmisContext.getResultTransformer().toQueryFragment( this.cmisContext );
+    private String buildQuerySelectClause() {
+        return this.cmisContext.getResultTransformer().toQueryFragment(this.cmisContext);
     }
 
-    private String buildQueryFromClause()
-    {
+    private String buildQueryFromClause() {
         StringBuilder buffer = new StringBuilder();
 
-        buffer.append( "FROM " );
-        buffer.append( this.cmisContext.getRootTypeName() );
-        buffer.append( " AS " );
-        buffer.append( this.cmisContext.getRootTypeAlias() );
+        buffer.append("FROM ");
+        buffer.append(this.cmisContext.getRootTypeName());
+        buffer.append(" AS ");
+        buffer.append(this.cmisContext.getRootTypeAlias());
 
         return buffer.toString();
     }
 
-    private String buildQueryJoinClause()
-    {
-        return Utils.concatenate( " ", this.joinElements );
+    private String buildQueryJoinClause() {
+        return Utils.concatenate(" ", this.joinElements);
     }
 
-    private String buildQueryWhereClause()
-    {
-        if ( !this.whereElements.isEmpty() )
-        {
+    private String buildQueryWhereClause() {
+        if (!this.whereElements.isEmpty()) {
             StringBuilder buffer = new StringBuilder();
-            buffer.append( "WHERE " );
+            buffer.append("WHERE ");
 
-            buffer.append( Utils.concatenate( " AND ", this.whereElements ) );
+            buffer.append(Utils.concatenate(" AND ", this.whereElements));
 
             return buffer.toString();
-        }
-        else
-        {
+        } else {
             return "";
         }
     }
 
-    private String buildQueryOrderByClause()
-    {
+    private String buildQueryOrderByClause() {
         List<Order> orderingElements = this.cmisContext.getOrderingElements();
-        if ( !orderingElements.isEmpty() )
-        {
+        if (!orderingElements.isEmpty()) {
             StringBuilder buffer = new StringBuilder();
-            buffer.append( "ORDER BY " );
+            buffer.append("ORDER BY ");
 
-            for ( Iterator<Order> iterator = orderingElements.iterator(); iterator.hasNext(); )
-            {
+            for (Iterator<Order> iterator = orderingElements.iterator(); iterator.hasNext(); ) {
                 Order o = iterator.next();
-                String property = cmisContext.prefix( o.getPropertyName() );
-                buffer.append( property );
-                buffer.append( " " );
-                if ( o.isDescending() )
-                {
-                    buffer.append( "desc" );
-                }
-                else
-                {
-                    buffer.append( "asc" );
+                String property = cmisContext.prefix(o.getPropertyName());
+                buffer.append(property);
+                buffer.append(" ");
+                if (o.isDescending()) {
+                    buffer.append("desc");
+                } else {
+                    buffer.append("asc");
                 }
 
-                if ( iterator.hasNext() )
-                {
-                    buffer.append( ", " );
+                if (iterator.hasNext()) {
+                    buffer.append(", ");
                 }
             }
             return buffer.toString();
-        }
-        else
-        {
-            return "";
-        }
-    }
-
-    private static String appendSpaceIfNeeded( String string )
-    {
-        if ( string != null && string.length() > 0 )
-        {
-            return " " + string;
-        }
-        else
-        {
+        } else {
             return "";
         }
     }

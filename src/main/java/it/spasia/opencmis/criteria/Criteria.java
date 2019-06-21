@@ -32,7 +32,6 @@ import org.apache.chemistry.opencmis.commons.data.ExtensionsData;
  *
  * @see CriteriaFactory
  * @see it.spasia.opencmis.criteria.restrictions.Restrictions
- * @see it.spasia.opencmis.criteria.projecttions.Projections
  *
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
@@ -59,7 +58,7 @@ public interface Criteria extends Serializable
 
     /**
      * Create subcriteria which will be rooted to specified type.
-     * @param type
+     * @param type OpenCmis ObjectType
      *
      * @return subcriteria object rooted to specified type
      */
@@ -69,7 +68,7 @@ public interface Criteria extends Serializable
      * Create subcriteria which will be rooted to specified type
      * specifying join type.
      *
-     * @param type
+     * @param type OpenCmis ObjectType
      *            
      * @param joinType
      *            what join type should be used
@@ -81,8 +80,8 @@ public interface Criteria extends Serializable
      * Create subcriteria which will be rooted to specified type and
      * aliased to specified name.
      *
-     * @param type
-     * @param alias
+     * @param type OpenCmis ObjectType
+     * @param alias OpenCmis ObjectType alias
      * @return subcriteria object rooted to specified type
      */
     Criteria createCriteria( String type, String alias);
@@ -92,8 +91,8 @@ public interface Criteria extends Serializable
      * Create subcriteria which will be rooted to specified type and
      * aliased to specified name and specifying join type.
      *
-     * @param type
-     * @param alias
+     * @param type OpenCmis ObjectType
+     * @param alias OpenCmis ObjectType alias
      * @param joinType
      *            what join type should be used
      * @return subcriteria object rooted to specified type
@@ -105,8 +104,8 @@ public interface Criteria extends Serializable
      * Create subcriteria which will be rooted to specified assocation path,
      * aliased to specified name and specifying join type.
      * 
-     * @param joinCriterion
-     * @return
+     * @param joinCriterion join
+     * @return Criterion
      */
     Criterion addJoinCriterion( Criterion joinCriterion );    
 
@@ -114,13 +113,23 @@ public interface Criteria extends Serializable
      * Execute query using provided cmisSession and if appropriate fill all
      * parameters in that query according to specified criterions.
      * 	
-     * @param cmisSession
-     * @param searchAllVersions
-     * @param context
-     * @return
+     * @param cmisSession session
+     * @param searchAllVersions search all version
+     * @param context context
+     * @return ItemIterable
      */
     ItemIterable<QueryResult> executeQuery( Session cmisSession , boolean searchAllVersions, OperationContext context);
 
+    /**
+     * Execute query using provided cmisSession and if appropriate fill all
+     * parameters in that query according to specified criterions.
+     *
+     * @param cmisSession session
+     * @param searchAllVersions search all version
+     * @param context context
+     * @param extension extension
+     * @return ItemIterable
+     */
     ItemIterable<QueryResult> executeQuery( Session cmisSession , boolean searchAllVersions, OperationContext context, ExtensionsData extension);
     
     /**
@@ -157,12 +166,14 @@ public interface Criteria extends Serializable
     List<String> getColumns();
 
     /**
-     * add column of processed criteria
+     * @param propertyName
+     *      add column of processed criteria
      */
     void addColumn(String propertyName);
 
     /**
-     * remove column of processed criteria
+     * @param propertyName
+     *      remove column of processed criteria
      */
     void removeColumn(String propertyName);
 }

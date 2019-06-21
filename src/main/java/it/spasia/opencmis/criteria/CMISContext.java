@@ -53,6 +53,8 @@ public interface CMISContext extends Serializable
      *
      * @param propertyName
      *            name of property for which parameter name will be generated
+     * @param parameterValue
+     *            parameter value
      *
      * @return generated parameter name
      */

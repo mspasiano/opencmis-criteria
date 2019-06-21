@@ -15,7 +15,7 @@
  * $Id: README.txt 19 2010-12-09 22:24:09Z spasia $
 
 OpenCMIS Criteria
-http://code.google.com/p/opencmis-criteria/
+https://github.com/mspasiano/opencmis-criteria
 
 For usage information refer to JavaDoc and Hibernate manual about using
 Criteria API.

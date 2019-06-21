@@ -31,7 +31,7 @@ public class QueryTest {
 		parameter.put(SessionParameter.PASSWORD, "admin");
 
 		// connection settings
-		parameter.put(SessionParameter.ATOMPUB_URL, "http://cmis.alfresco.com/service/cmis");
+		parameter.put(SessionParameter.ATOMPUB_URL, "http://cmis.alfresco.com/api/-default-/public/cmis/versions/1.1/atom");
 		parameter.put(SessionParameter.BINDING_TYPE, BindingType.ATOMPUB.value());
 		parameter.put(SessionParameter.REPOSITORY_ID, f.getRepositories(parameter).get(0).getId());
 
@@ -48,7 +48,7 @@ public class QueryTest {
 	public void queryApostrophe(){
 		Criteria criteria = CriteriaFactory.createCriteria(BaseTypeId.CMIS_FOLDER.value());
 		criteria.add(Restrictions.eq(PropertyIds.NAME, "prova'prova"));
-		ItemIterable<QueryResult> queryResults = criteria.executeQuery(cmisSession, true, cmisSession.getDefaultContext());
+		ItemIterable<QueryResult> queryResults = criteria.executeQuery(cmisSession, false, cmisSession.getDefaultContext());
 		for (QueryResult queryResult : queryResults) {
 			Assert.assertEquals("prova'prova", queryResult.getPropertyValueById(PropertyIds.NAME));
 		}

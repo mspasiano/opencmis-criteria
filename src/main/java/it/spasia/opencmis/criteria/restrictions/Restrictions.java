@@ -306,8 +306,8 @@ public class Restrictions
      *
      * @param propertyName
      *            property to compare
-     * @param values
-     *            values compared with property
+     * @param value
+     *            value compared with property
      * @return IN expression
      */
     public static Criterion any( String propertyName, Object value)

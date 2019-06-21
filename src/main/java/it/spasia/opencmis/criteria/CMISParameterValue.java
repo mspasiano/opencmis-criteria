@@ -37,11 +37,6 @@ public interface CMISParameterValue<T extends Object> extends Serializable
     /**
      * Binds query parameter value using name binding.
      *
-     * @see javax.persistence.Query#setParameter(String, Object)
-     * @see javax.persistence.Query#setParameter(String, java.util.Date,
-     *      javax.persistence.TemporalType)
-     * @see javax.persistence.Query#setParameter(String, java.util.Calendar,
-     *      javax.persistence.TemporalType)
      *
      * @param parameterName
      *            bind to parameter of specified name
@@ -50,19 +45,4 @@ public interface CMISParameterValue<T extends Object> extends Serializable
      */
     void populateToQuery( String parameterName, StringBuilder query );
 
-    /**
-     * Binds query parameter value using positional binding.
-     *
-     * @see javax.persistence.Query#setParameter(String, Object)
-     * @see javax.persistence.Query#setParameter(String, java.util.Date,
-     *      javax.persistence.TemporalType)
-     * @see javax.persistence.Query#setParameter(String, java.util.Calendar,
-     *      javax.persistence.TemporalType)
-     *
-     * @param parameterPosition
-     *            bind to parameter on specified position
-     * @param query
-     *            populate to specified query
-     */
-//    void populateToQuery( int parameterPosition, StringBuilder query );
 }

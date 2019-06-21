@@ -91,8 +91,10 @@ public class Order implements Serializable
     /**
      * Constructs new order element for specified property and direction.
      *
-     * @param propertyName
+     * @param aPropertyName
      *            property used for ordering
+     * @param descendingFlag
+     *            asc or desc
      */
     protected Order( String aPropertyName, boolean descendingFlag )
     {
