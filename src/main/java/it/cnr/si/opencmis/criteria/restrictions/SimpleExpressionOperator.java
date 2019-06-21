@@ -22,19 +22,16 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public enum SimpleExpressionOperator implements Operator
-{
-    EQ( "=" ), NE( "<>" ), GT( ">" ), LT( "<" ), LE( "<=" ), GE( ">=" ), LIKE( "LIKE" );
-
-    SimpleExpressionOperator( String aStringRepresentation )
-    {
-        this.stringRepresentation = aStringRepresentation;
-    }
+public enum SimpleExpressionOperator implements Operator {
+    EQ("="), NE("<>"), GT(">"), LT("<"), LE("<="), GE(">="), LIKE("LIKE");
 
     private final String stringRepresentation;
 
-    public String getStringRepresentation()
-    {
+    SimpleExpressionOperator(String aStringRepresentation) {
+        this.stringRepresentation = aStringRepresentation;
+    }
+
+    public String getStringRepresentation() {
         return this.stringRepresentation;
     }
 

@@ -18,9 +18,9 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * $Id: PropertyExpression.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.CMISContext;
 import it.cnr.si.opencmis.criteria.CMISParameterValue;
+import it.cnr.si.opencmis.criteria.Criterion;
 
 /**
  * Represents expression comparing two properties.
@@ -29,8 +29,7 @@ import it.cnr.si.opencmis.criteria.CMISParameterValue;
  * @version $Revision: 1 $
  */
 public class ContainsExpression
-    implements Criterion
-{
+        implements Criterion {
     private static final long serialVersionUID = 1L;
     /**
      * Property which value is being compared.
@@ -38,36 +37,33 @@ public class ContainsExpression
     private final String propertyName;
     private CMISParameterValue<?> value;
 
-    protected ContainsExpression(String properyName, CMISParameterValue<?> aValue )
-    {
-    	this.propertyName = properyName;
-    	this.value = aValue;
-    }
-    
-    protected ContainsExpression(CMISParameterValue<?> aValue )
-    {
-    	this(null, aValue);
+    protected ContainsExpression(String properyName, CMISParameterValue<?> aValue) {
+        this.propertyName = properyName;
+        this.value = aValue;
     }
 
-    public String toQueryFragment( CMISContext CMISContext )
-    {
-    	String parameterName = CMISContext.generateParameterName("contains", value );    	
+    protected ContainsExpression(CMISParameterValue<?> aValue) {
+        this(null, aValue);
+    }
+
+    public String toQueryFragment(CMISContext CMISContext) {
+        String parameterName = CMISContext.generateParameterName("contains", value);
         StringBuilder buffer = new StringBuilder();
         String alias = CMISContext.getTypeAlias();
-        buffer.append( " CONTAINS " );
-        buffer.append( " ( " );
-        buffer.append( alias );
-        buffer.append( " , " );
-        if (propertyName !=  null){
-            buffer.append( "'" );
-            buffer.append( propertyName );
-            buffer.append( ":\\''" );
+        buffer.append(" CONTAINS ");
+        buffer.append(" ( ");
+        buffer.append(alias);
+        buffer.append(" , ");
+        if (propertyName != null) {
+            buffer.append("'");
+            buffer.append(propertyName);
+            buffer.append(":\\''");
         }
         buffer.append(parameterName);
-        if (propertyName !=  null){
-            buffer.append( "\\''" );
+        if (propertyName != null) {
+            buffer.append("\\''");
         }
-        buffer.append( " ) " );
+        buffer.append(" ) ");
         return buffer.toString();
     }
 

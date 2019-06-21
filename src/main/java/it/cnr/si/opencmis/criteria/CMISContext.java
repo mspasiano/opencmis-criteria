@@ -29,8 +29,7 @@ import java.util.Map;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public interface CMISContext extends Serializable
-{
+public interface CMISContext extends Serializable {
 
     /**
      * @return type alias of processed context
@@ -51,15 +50,12 @@ public interface CMISContext extends Serializable
      * Generate simply parameter name which is unique within given query and add
      * provided parameter value to this cmis context.
      *
-     * @param propertyName
-     *            name of property for which parameter name will be generated
-     * @param parameterValue
-     *            parameter value
-     *
+     * @param propertyName   name of property for which parameter name will be generated
+     * @param parameterValue parameter value
      * @return generated parameter name
      */
-    String generateParameterName( String propertyName,
-                                  CMISParameterValue<?> parameterValue );
+    String generateParameterName(String propertyName,
+                                 CMISParameterValue<?> parameterValue);
 
     /**
      * Generate alias for subcriteria when no alias is specified for given
@@ -83,7 +79,7 @@ public interface CMISContext extends Serializable
      * @return columns of processed criteria
      */
     List<String> getColumns();
-    
+
     /**
      * @return criterion elements of processed criteria
      */
@@ -92,8 +88,8 @@ public interface CMISContext extends Serializable
     /**
      * @return join criterion elements of processed criteria
      */
-    public Map<Criteria, Criterion> getCriterionJoinElements();
-    
+    Map<Criteria, Criterion> getCriterionJoinElements();
+
     /**
      * @return ordering elements of processed criteria
      */
@@ -103,13 +99,14 @@ public interface CMISContext extends Serializable
      * @return result transformer for processed criteria
      */
     ResultTransformer getResultTransformer();
-    
+
     /**
      * Prefixes the assocation path with the current entity alias
      * only if it is not already prefixed by one of the aliases.
+     *
      * @param path assocation path to prefix
      * @return assocation path prefixed if needed
      */
-    String prefix( String path );
+    String prefix(String path);
 
 }

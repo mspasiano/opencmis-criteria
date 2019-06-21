@@ -23,31 +23,31 @@ package it.cnr.si.opencmis.criteria;
  * @version $Revision: 1 $
  */
 public class CriteriaException extends Exception {
-	private static final long serialVersionUID = 1L;
-	private final String errorContent;
+    private static final long serialVersionUID = 1L;
+    private final String errorContent;
 
-	public CriteriaException(String errorContent) {
-		super();
-		this.errorContent = errorContent;
-	}
+    public CriteriaException(String errorContent) {
+        super();
+        this.errorContent = errorContent;
+    }
 
-	public CriteriaException(String message, Throwable cause, String errorContent) {
-		super(message, cause);
-		this.errorContent = errorContent;
-	}
+    public CriteriaException(String message, Throwable cause, String errorContent) {
+        super(message, cause);
+        this.errorContent = errorContent;
+    }
 
-	public CriteriaException(String message, String errorContent) {
-		super(message);
-		this.errorContent = errorContent;
-	}
+    public CriteriaException(String message, String errorContent) {
+        super(message);
+        this.errorContent = errorContent;
+    }
 
-	public CriteriaException(Throwable cause, String errorContent) {
-		super(cause);
-		this.errorContent = errorContent;
-	}
+    public CriteriaException(Throwable cause, String errorContent) {
+        super(cause);
+        this.errorContent = errorContent;
+    }
 
-	public String getErrorContent() {
-		return errorContent;
-	}
+    public String getErrorContent() {
+        return errorContent;
+    }
 
 }

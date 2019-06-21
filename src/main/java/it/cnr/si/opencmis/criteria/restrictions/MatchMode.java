@@ -24,15 +24,12 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public enum MatchMode
-{
+public enum MatchMode {
     /**
      * Exact match mode.
      */
-    EXACT
-    {
-        public String toMatchString( String pattern )
-        {
+    EXACT {
+        public String toMatchString(String pattern) {
             return pattern;
         }
     },
@@ -40,10 +37,8 @@ public enum MatchMode
     /**
      * Match from start.
      */
-    START
-    {
-        public String toMatchString( String pattern )
-        {
+    START {
+        public String toMatchString(String pattern) {
             return pattern + "%";
         }
     },
@@ -51,10 +46,8 @@ public enum MatchMode
     /**
      * Match in the end.
      */
-    END
-    {
-        public String toMatchString( String pattern )
-        {
+    END {
+        public String toMatchString(String pattern) {
             return "%" + pattern;
         }
     },
@@ -62,10 +55,8 @@ public enum MatchMode
     /**
      * Match anywhere.
      */
-    ANYWHERE
-    {
-        public String toMatchString( String pattern )
-        {
+    ANYWHERE {
+        public String toMatchString(String pattern) {
             return "%" + pattern + "%";
         }
     };
@@ -73,9 +64,8 @@ public enum MatchMode
     /**
      * Returns appropriate pattern with "%" metacharacters.
      *
-     * @param pattern
-     *            pattern to convert to given match pattern
+     * @param pattern pattern to convert to given match pattern
      * @return pattern with "%" metacharacters applied
      */
-    public abstract String toMatchString( String pattern );
+    public abstract String toMatchString(String pattern);
 }

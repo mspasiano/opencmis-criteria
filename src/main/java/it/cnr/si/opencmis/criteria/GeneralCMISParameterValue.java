@@ -26,8 +26,7 @@ package it.cnr.si.opencmis.criteria;
  * @version $Revision: 1 $
  */
 public class GeneralCMISParameterValue
-    implements CMISParameterValue<Object>
-{
+        implements CMISParameterValue<Object> {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -38,11 +37,9 @@ public class GeneralCMISParameterValue
     /**
      * Constructor populating all required data.
      *
-     * @param parameterValue
-     *            value for this holder
+     * @param parameterValue value for this holder
      */
-    GeneralCMISParameterValue( Object parameterValue )
-    {
+    GeneralCMISParameterValue(Object parameterValue) {
         this.value = parameterValue;
     }
 
@@ -52,10 +49,9 @@ public class GeneralCMISParameterValue
      * @see CMISParameterValue#populateToQuery(java.lang.String,
      *      java.lang.StringBuilder)
      */
-    public void populateToQuery( String parameterName, StringBuilder query )
-    {
-        query.replace(query.indexOf(parameterName) -1, query.indexOf(parameterName) + parameterName.length(), 
-        		Utils.parseParameterValue(this.value));
+    public void populateToQuery(String parameterName, StringBuilder query) {
+        query.replace(query.indexOf(parameterName) - 1, query.indexOf(parameterName) + parameterName.length(),
+                Utils.parseParameterValue(this.value));
     }
 
     /*
@@ -63,8 +59,7 @@ public class GeneralCMISParameterValue
      *
      * @see CMISParameterValue#getValue()
      */
-    public Object getValue()
-    {
+    public Object getValue() {
         return value;
     }
 

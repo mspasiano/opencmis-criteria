@@ -27,8 +27,7 @@ import java.io.Serializable;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public interface CMISParameterValue<T extends Object> extends Serializable
-{
+public interface CMISParameterValue<T extends Object> extends Serializable {
     /**
      * @return value of this holder.
      */
@@ -37,12 +36,9 @@ public interface CMISParameterValue<T extends Object> extends Serializable
     /**
      * Binds query parameter value using name binding.
      *
-     *
-     * @param parameterName
-     *            bind to parameter of specified name
-     * @param query
-     *            populate to specified query
+     * @param parameterName bind to parameter of specified name
+     * @param query         populate to specified query
      */
-    void populateToQuery( String parameterName, StringBuilder query );
+    void populateToQuery(String parameterName, StringBuilder query);
 
 }

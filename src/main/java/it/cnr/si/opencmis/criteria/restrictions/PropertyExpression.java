@@ -18,8 +18,8 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * $Id: PropertyExpression.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.CMISContext;
+import it.cnr.si.opencmis.criteria.Criterion;
 
 /**
  * Represents expression comparing two properties.
@@ -28,8 +28,7 @@ import it.cnr.si.opencmis.criteria.CMISContext;
  * @version $Revision: 1 $
  */
 public class PropertyExpression
-    implements Criterion
-{
+        implements Criterion {
     private static final long serialVersionUID = 1L;
 
     private final String propertyName;
@@ -38,33 +37,30 @@ public class PropertyExpression
 
     private final String operator;
 
-    public PropertyExpression( String propertyName, String otherPropertyName,
-                               SimpleExpressionOperator operator )
-    {
-        this( propertyName, otherPropertyName,
-              ( operator != null ) ? operator.getStringRepresentation()
-                              : "null" );
+    public PropertyExpression(String propertyName, String otherPropertyName,
+                              SimpleExpressionOperator operator) {
+        this(propertyName, otherPropertyName,
+                (operator != null) ? operator.getStringRepresentation()
+                        : "null");
     }
 
-    public PropertyExpression( String propertyName, String otherPropertyName,
-                               String operator )
-    {
+    public PropertyExpression(String propertyName, String otherPropertyName,
+                              String operator) {
         this.propertyName = propertyName;
         this.otherPropertyName = otherPropertyName;
         this.operator = operator;
     }
 
-    public String toQueryFragment( CMISContext CMISContext )
-    {
-        final String qualifiedPropertyName =CMISContext.prefix( this.propertyName );
-        final String qualifiedOtherPropertyName = CMISContext.prefix( this.otherPropertyName );
+    public String toQueryFragment(CMISContext CMISContext) {
+        final String qualifiedPropertyName = CMISContext.prefix(this.propertyName);
+        final String qualifiedOtherPropertyName = CMISContext.prefix(this.otherPropertyName);
 
         StringBuilder buffer = new StringBuilder();
-        buffer.append( qualifiedPropertyName );
-        buffer.append( " " );
-        buffer.append( this.operator );
-        buffer.append( " " );
-        buffer.append( qualifiedOtherPropertyName );
+        buffer.append(qualifiedPropertyName);
+        buffer.append(" ");
+        buffer.append(this.operator);
+        buffer.append(" ");
+        buffer.append(qualifiedOtherPropertyName);
 
         return buffer.toString();
     }

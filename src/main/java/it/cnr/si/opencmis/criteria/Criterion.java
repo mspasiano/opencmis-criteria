@@ -26,16 +26,14 @@ import java.io.Serializable;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public interface Criterion extends Serializable
-{
+public interface Criterion extends Serializable {
 
     /**
      * Converts criterion to part of CMIS query string.
      *
-     * @param CMISContext
-     *            generator of parameter names in query
+     * @param CMISContext generator of parameter names in query
      * @return fragment of CMIS query string representing this criterion
-     *         expression
+     * expression
      */
-    String toQueryFragment( CMISContext CMISContext );
+    String toQueryFragment(CMISContext CMISContext);
 }

@@ -17,9 +17,9 @@ package it.cnr.si.opencmis.criteria.restrictions;
  *
  */
 
-import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.CMISContext;
 import it.cnr.si.opencmis.criteria.CMISParameterValue;
+import it.cnr.si.opencmis.criteria.Criterion;
 
 /**
  * Represents expression comparing two properties.
@@ -28,28 +28,25 @@ import it.cnr.si.opencmis.criteria.CMISParameterValue;
  * @version $Revision: 1 $
  */
 public class InFolderExpression
-    implements Criterion
-{
+        implements Criterion {
     private static final long serialVersionUID = 1L;
 
     private CMISParameterValue<?> value;
-    
-    protected InFolderExpression(CMISParameterValue<?> aValue )
-    {
-    	this.value = aValue;
+
+    protected InFolderExpression(CMISParameterValue<?> aValue) {
+        this.value = aValue;
     }
 
-    public String toQueryFragment( CMISContext CMISContext )
-    {
-    	String parameterName = CMISContext.generateParameterName("inFolder", value );    	
+    public String toQueryFragment(CMISContext CMISContext) {
+        String parameterName = CMISContext.generateParameterName("inFolder", value);
         StringBuilder buffer = new StringBuilder();
         String alias = CMISContext.getTypeAlias();
-        buffer.append( " IN_FOLDER " );
-        buffer.append( " ( " );
-        buffer.append( alias );
-        buffer.append( " , " );
+        buffer.append(" IN_FOLDER ");
+        buffer.append(" ( ");
+        buffer.append(alias);
+        buffer.append(" , ");
         buffer.append(parameterName);
-        buffer.append( " ) " );
+        buffer.append(" ) ");
         return buffer.toString();
     }
 }

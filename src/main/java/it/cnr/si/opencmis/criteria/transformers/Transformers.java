@@ -26,21 +26,18 @@ import it.cnr.si.opencmis.criteria.ResultTransformer;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public class Transformers
-{
+public class Transformers {
     /**
      * Private constructor to prevent from creating instances of this utility
      * class.
      */
-    private Transformers()
-    {
+    private Transformers() {
     }
 
     /**
      * @return root entity result transformer
      */
-    public static ResultTransformer rootType()
-    {
+    public static ResultTransformer rootType() {
         return new CMISPropertiesResultTransformer();
     }
 }

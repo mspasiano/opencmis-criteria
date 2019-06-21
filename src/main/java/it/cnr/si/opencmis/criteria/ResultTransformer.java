@@ -26,14 +26,12 @@ import java.io.Serializable;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public interface ResultTransformer extends Serializable
-{
+public interface ResultTransformer extends Serializable {
     /**
      * Generate select clause fragment.
      *
-     * @param CMISContext
-     *            context for generated CMIS query
+     * @param CMISContext context for generated CMIS query
      * @return select clause fragment
      */
-    String toQueryFragment( CMISContext CMISContext );
+    String toQueryFragment(CMISContext CMISContext);
 }

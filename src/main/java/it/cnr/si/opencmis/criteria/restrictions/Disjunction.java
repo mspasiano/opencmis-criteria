@@ -25,15 +25,13 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * @version $Revision: 1 $
  */
 public class Disjunction
-    extends Junction
-{
+        extends Junction {
     private static final long serialVersionUID = 1L;
 
     /**
      * Creates instance of this expression.
      */
-    protected Disjunction()
-    {
-        super( LogicalExpressionOperator.OR );
+    protected Disjunction() {
+        super(LogicalExpressionOperator.OR);
     }
 }

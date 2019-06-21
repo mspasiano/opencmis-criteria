@@ -18,9 +18,9 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * $Id: BetweenExpression.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.CMISContext;
 import it.cnr.si.opencmis.criteria.CMISParameterValue;
+import it.cnr.si.opencmis.criteria.Criterion;
 
 /**
  * Between expression implementation.
@@ -29,8 +29,7 @@ import it.cnr.si.opencmis.criteria.CMISParameterValue;
  * @version $Revision: 1 $
  */
 public class BetweenExpression
-    implements Criterion
-{
+        implements Criterion {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -62,49 +61,37 @@ public class BetweenExpression
      * High boundary for eq.
      */
     private final boolean highEq;
-    
+
     /**
      * Construct expression for specified expression.
      *
-     * @param aPropertyName
-     *            property to compare
-     * @param lowValue
-     *            between low boundary value
-     * @param highValue
-     *            between high boundary value
+     * @param aPropertyName property to compare
+     * @param lowValue      between low boundary value
+     * @param highValue     between high boundary value
      */
-    protected BetweenExpression( String aPropertyName,
-            CMISParameterValue<?> lowValue,
-            CMISParameterValue<?> highValue )
-	{
-		this( aPropertyName, lowValue, highValue, false, true, true);
-	}
+    protected BetweenExpression(String aPropertyName,
+                                CMISParameterValue<?> lowValue,
+                                CMISParameterValue<?> highValue) {
+        this(aPropertyName, lowValue, highValue, false, true, true);
+    }
 
 
     /**
      * Construct expression for specified expression.
      *
-     * @param aPropertyName
-     *            property to compare
-     * @param lowValue
-     *            between low boundary value
-     * @param highValue
-     *            between high boundary value
-     * @param negate
-     *            should it be NOT BETWEEN expression
-     * @param lowEq
-     *            firstValue
-     * @param highEq
-     *            secondValue
-     *
+     * @param aPropertyName property to compare
+     * @param lowValue      between low boundary value
+     * @param highValue     between high boundary value
+     * @param negate        should it be NOT BETWEEN expression
+     * @param lowEq         firstValue
+     * @param highEq        secondValue
      */
-    protected BetweenExpression( String aPropertyName,
-                                 CMISParameterValue<?> lowValue,
-                                 CMISParameterValue<?> highValue, 
-                                 boolean negate,
-                                 boolean lowEq,
-                                 boolean highEq)
-    {
+    protected BetweenExpression(String aPropertyName,
+                                CMISParameterValue<?> lowValue,
+                                CMISParameterValue<?> highValue,
+                                boolean negate,
+                                boolean lowEq,
+                                boolean highEq) {
         this.propertyName = aPropertyName;
         this.low = lowValue;
         this.high = highValue;
@@ -118,40 +105,39 @@ public class BetweenExpression
      *
      * @see Criterion#toQueryFragment(CMISContext)
      */
-    public String toQueryFragment( CMISContext CMISContext )
-    {
+    public String toQueryFragment(CMISContext CMISContext) {
         String lowParameterName =
-            CMISContext.generateParameterName( propertyName, low );
+                CMISContext.generateParameterName(propertyName, low);
         String highParameterName =
-            CMISContext.generateParameterName( propertyName, high );
+                CMISContext.generateParameterName(propertyName, high);
 
         StringBuilder buffer = new StringBuilder();
-        final String property = CMISContext.prefix( this.propertyName );
-        
-        buffer.append( property );
-        buffer.append( ' ' );
-        if ( negate )
-        	buffer.append( lowEq?SimpleExpressionOperator.LE.getStringRepresentation(): 
-        		SimpleExpressionOperator.LT.getStringRepresentation());
-    	else	
-        	buffer.append( lowEq?SimpleExpressionOperator.GE.getStringRepresentation(): 
-        		SimpleExpressionOperator.GT.getStringRepresentation());
-        buffer.append( ' ' );
-        buffer.append( ":" );
-        buffer.append( lowParameterName );
-        buffer.append( " AND " );
+        final String property = CMISContext.prefix(this.propertyName);
 
-        buffer.append( property );
-        buffer.append( ' ' );
-        if ( negate )
-        	buffer.append( highEq?SimpleExpressionOperator.GE.getStringRepresentation(): 
-        		SimpleExpressionOperator.GT.getStringRepresentation());
+        buffer.append(property);
+        buffer.append(' ');
+        if (negate)
+            buffer.append(lowEq ? SimpleExpressionOperator.LE.getStringRepresentation() :
+                    SimpleExpressionOperator.LT.getStringRepresentation());
         else
-        	buffer.append( highEq?SimpleExpressionOperator.LE.getStringRepresentation(): 
-        		SimpleExpressionOperator.LT.getStringRepresentation());
-        buffer.append( ' ' );
-        buffer.append( ":" );
-        buffer.append( highParameterName );
+            buffer.append(lowEq ? SimpleExpressionOperator.GE.getStringRepresentation() :
+                    SimpleExpressionOperator.GT.getStringRepresentation());
+        buffer.append(' ');
+        buffer.append(":");
+        buffer.append(lowParameterName);
+        buffer.append(" AND ");
+
+        buffer.append(property);
+        buffer.append(' ');
+        if (negate)
+            buffer.append(highEq ? SimpleExpressionOperator.GE.getStringRepresentation() :
+                    SimpleExpressionOperator.GT.getStringRepresentation());
+        else
+            buffer.append(highEq ? SimpleExpressionOperator.LE.getStringRepresentation() :
+                    SimpleExpressionOperator.LT.getStringRepresentation());
+        buffer.append(' ');
+        buffer.append(":");
+        buffer.append(highParameterName);
 
         return buffer.toString();
     }

@@ -23,49 +23,41 @@ import it.cnr.si.opencmis.criteria.impl.CriteriaImpl;
 import java.io.Serializable;
 
 
-
 /**
  * Factory of criteria objects.
  *
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public class CriteriaFactory implements Serializable
-{
+public class CriteriaFactory implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
      * Private constructor to prevent from creating instances of this utility
      * class.
      */
-    private CriteriaFactory()
-    {
+    private CriteriaFactory() {
     }
 
     /**
      * Creates criteria for specified entity name aliased as &amp;root&amp;.
      *
-     * @param typeId
-     *            id of root type
+     * @param typeId id of root type
      * @return criteria for specified type id
      */
-    public static Criteria createCriteria( String typeId )
-    {
-        return new CriteriaImpl( typeId );
+    public static Criteria createCriteria(String typeId) {
+        return new CriteriaImpl(typeId);
     }
 
     /**
      * Creates criteria for specified type id aliased as specified alias.
      *
-     * @param typeId
-     *            id of root type
-     * @param alias
-     *            alias for root type
+     * @param typeId id of root type
+     * @param alias  alias for root type
      * @return criteria for specified type id
      */
-    public static Criteria createCriteria( String typeId, String alias )
-    {
-        return new CriteriaImpl( typeId, alias );
+    public static Criteria createCriteria(String typeId, String alias) {
+        return new CriteriaImpl(typeId, alias);
     }
 
 }

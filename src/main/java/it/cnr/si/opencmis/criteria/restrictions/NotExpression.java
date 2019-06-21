@@ -18,8 +18,8 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * $Id: NotExpression.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.CMISContext;
+import it.cnr.si.opencmis.criteria.Criterion;
 
 /**
  * Represents <code>NOT</code> expression.
@@ -28,8 +28,7 @@ import it.cnr.si.opencmis.criteria.CMISContext;
  * @version $Revision: 1 $
  */
 public class NotExpression
-    implements Criterion
-{
+        implements Criterion {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -40,11 +39,9 @@ public class NotExpression
     /**
      * Construct negation of given expression.
      *
-     * @param anExpression
-     *            expression to negate
+     * @param anExpression expression to negate
      */
-    protected NotExpression( Criterion anExpression )
-    {
+    protected NotExpression(Criterion anExpression) {
         this.expression = anExpression;
     }
 
@@ -53,9 +50,8 @@ public class NotExpression
      *
      * @see Criterion#toQueryFragment(CMISContext)
      */
-    public String toQueryFragment( CMISContext CMISContext )
-    {
-        return "NOT " + expression.toQueryFragment( CMISContext );
+    public String toQueryFragment(CMISContext CMISContext) {
+        return "NOT " + expression.toQueryFragment(CMISContext);
     }
 
 }

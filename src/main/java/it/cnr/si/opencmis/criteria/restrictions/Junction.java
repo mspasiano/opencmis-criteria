@@ -18,8 +18,8 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * $Id: Junction.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.CMISContext;
+import it.cnr.si.opencmis.criteria.Criterion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +32,7 @@ import java.util.List;
  * @version $Revision: 1 $
  */
 public class Junction
-    implements Criterion
-{
+        implements Criterion {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -49,24 +48,20 @@ public class Junction
     /**
      * Creates expression setting operator for junction.
      *
-     * @param anOperator
-     *            operator for junction
+     * @param anOperator operator for junction
      */
-    protected Junction( final LogicalExpressionOperator anOperator )
-    {
+    protected Junction(final LogicalExpressionOperator anOperator) {
         this.operator = anOperator;
     }
 
     /**
      * Adds criterion to junction.
      *
-     * @param criterion
-     *            criterion to add
+     * @param criterion criterion to add
      * @return the same junction instance
      */
-    public Junction add( Criterion criterion )
-    {
-        this.criterions.add( criterion );
+    public Junction add(Criterion criterion) {
+        this.criterions.add(criterion);
 
         return this;
     }
@@ -76,32 +71,26 @@ public class Junction
      *
      * @see Criterion#toQueryFragment(CMISContext)
      */
-    public String toQueryFragment( CMISContext CMISContext )
-    {
-        if ( criterions.isEmpty() )
-        {
+    public String toQueryFragment(CMISContext CMISContext) {
+        if (criterions.isEmpty()) {
             return "";
-        }
-        else
-        {
-            StringBuilder buffer = new StringBuilder( "(" );
+        } else {
+            StringBuilder buffer = new StringBuilder("(");
             boolean firstRun = true;
 
-            for ( Criterion c : this.criterions )
-            {
-                if ( !firstRun )
-                {
-                    buffer.append( ' ' );
-                    buffer.append( this.operator.getStringRepresentation() );
-                    buffer.append( ' ' );
+            for (Criterion c : this.criterions) {
+                if (!firstRun) {
+                    buffer.append(' ');
+                    buffer.append(this.operator.getStringRepresentation());
+                    buffer.append(' ');
                 }
 
-                buffer.append( c.toQueryFragment( CMISContext ) );
+                buffer.append(c.toQueryFragment(CMISContext));
                 firstRun = false;
             }
-            
-            buffer.append( ")" );
-            
+
+            buffer.append(")");
+
             return buffer.toString();
         }
     }

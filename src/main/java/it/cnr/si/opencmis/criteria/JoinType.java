@@ -24,19 +24,26 @@ package it.cnr.si.opencmis.criteria;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public enum JoinType
-{
+public enum JoinType {
 
     /**
      * Represents inner join.
      */
-    INNER_JOIN( "INNER JOIN" ),
+    INNER_JOIN("INNER JOIN"),
 
     /**
      * Represents left (outer) join.
      */
-    LEFT_JOIN( "LEFT JOIN" );
+    LEFT_JOIN("LEFT JOIN");
 
+    /**
+     * Default join used in this criteria API.
+     */
+    public static final JoinType DEFAULT = INNER_JOIN;
+    /**
+     * Synonym for left join.
+     */
+    public static final JoinType LEFT_OUTER_JOIN = LEFT_JOIN;
     /**
      * Holds string representation of this join type.
      */
@@ -45,11 +52,9 @@ public enum JoinType
     /**
      * Creates enum instance.
      *
-     * @param aStringRepresentation
-     *            string representation of join expression
+     * @param aStringRepresentation string representation of join expression
      */
-    JoinType( String aStringRepresentation )
-    {
+    JoinType(String aStringRepresentation) {
         this.stringRepresentation = aStringRepresentation;
     }
 
@@ -58,18 +63,7 @@ public enum JoinType
      *
      * @return string representation of this join type
      */
-    public String getStringRepresentation()
-    {
+    public String getStringRepresentation() {
         return this.stringRepresentation;
     }
-
-    /**
-     * Default join used in this criteria API.
-     */
-    public static final JoinType DEFAULT = INNER_JOIN;
-
-    /**
-     * Synonym for left join.
-     */
-    public static final JoinType LEFT_OUTER_JOIN = LEFT_JOIN;
 }

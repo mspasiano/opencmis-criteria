@@ -24,8 +24,7 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-enum LogicalExpressionOperator implements Operator
-{
+enum LogicalExpressionOperator implements Operator {
     AND, OR;
 
     /*
@@ -33,8 +32,7 @@ enum LogicalExpressionOperator implements Operator
      *
      * @see Operator#getStringRepresentation()
      */
-    public String getStringRepresentation()
-    {
+    public String getStringRepresentation() {
         return this.name();
     }
 }

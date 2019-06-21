@@ -18,8 +18,8 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * $Id: NullExpression.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.CMISContext;
+import it.cnr.si.opencmis.criteria.Criterion;
 
 /**
  * Represents <code>IS NULL</code> expression.
@@ -28,8 +28,7 @@ import it.cnr.si.opencmis.criteria.CMISContext;
  * @version $Revision: 1 $
  */
 public class NullExpression
-    implements Criterion
-{
+        implements Criterion {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -40,11 +39,9 @@ public class NullExpression
     /**
      * Construct <code>IS NULL</code> expression for specified property.
      *
-     * @param aPropertyName
-     *            property to check
+     * @param aPropertyName property to check
      */
-    protected NullExpression( String aPropertyName )
-    {
+    protected NullExpression(String aPropertyName) {
         this.propertyName = aPropertyName;
     }
 
@@ -53,9 +50,8 @@ public class NullExpression
      *
      * @see Criterion#toQueryFragment(CMISContext)
      */
-    public String toQueryFragment( CMISContext CMISContext )
-    {
-        final String qualifiedPropertyName =CMISContext.prefix( this.propertyName );
+    public String toQueryFragment(CMISContext CMISContext) {
+        final String qualifiedPropertyName = CMISContext.prefix(this.propertyName);
         return qualifiedPropertyName + " IS NULL";
     }
 

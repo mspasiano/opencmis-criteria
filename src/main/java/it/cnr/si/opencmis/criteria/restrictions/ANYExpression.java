@@ -30,8 +30,7 @@ import it.cnr.si.opencmis.criteria.Criterion;
  * @version $Revision: 1 $
  */
 public class ANYExpression
-    implements Criterion
-{
+        implements Criterion {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -47,14 +46,11 @@ public class ANYExpression
     /**
      * Construct expression for specified expression.
      *
-     * @param aPropertyName
-     *            property to compare
-     * @param aValue
-     *            values for comparision
+     * @param aPropertyName property to compare
+     * @param aValue        values for comparision
      */
-    protected ANYExpression( String aPropertyName,
-                            CMISParameterValue<?> aValue )
-    {
+    protected ANYExpression(String aPropertyName,
+                            CMISParameterValue<?> aValue) {
         this.propertyName = aPropertyName;
         this.value = aValue;
     }
@@ -64,17 +60,16 @@ public class ANYExpression
      *
      * @see Criterion#toQueryFragment(CMISContext)
      */
-    public String toQueryFragment( CMISContext CMISContext )
-    {
+    public String toQueryFragment(CMISContext CMISContext) {
         String parameterName = ":" + CMISContext.generateParameterName(
-                                                                     this.propertyName,
-                                                                     value );
+                this.propertyName,
+                value);
 
-        final String property = CMISContext.prefix( propertyName );
+        final String property = CMISContext.prefix(propertyName);
         StringBuilder buffer = new StringBuilder();
         buffer.append(parameterName);
         buffer.append(" = ANY ");
-        buffer.append( property );
+        buffer.append(property);
         return buffer.toString();
     }
 

@@ -26,8 +26,7 @@ import java.io.Serializable;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public interface Operator extends Serializable
-{
+public interface Operator extends Serializable {
     /**
      * Returns string representation of operator.
      *

@@ -25,15 +25,13 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * @version $Revision: 1 $
  */
 public class Conjunction
-    extends Junction
-{
+        extends Junction {
     private static final long serialVersionUID = 1L;
 
     /**
      * Creates instance of this expression.
      */
-    protected Conjunction()
-    {
-        super( LogicalExpressionOperator.AND );
+    protected Conjunction() {
+        super(LogicalExpressionOperator.AND);
     }
 }

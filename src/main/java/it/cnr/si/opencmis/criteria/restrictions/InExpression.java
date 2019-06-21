@@ -18,9 +18,9 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * $Id: InExpression.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.CMISContext;
 import it.cnr.si.opencmis.criteria.CMISParameterValue;
+import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.Utils;
 
 import java.util.ArrayList;
@@ -34,8 +34,7 @@ import java.util.List;
  * @version $Revision: 1 $
  */
 public class InExpression
-    implements Criterion
-{
+        implements Criterion {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -51,14 +50,11 @@ public class InExpression
     /**
      * Construct expression for specified expression.
      *
-     * @param aPropertyName
-     *            property to compare
-     * @param aValues
-     *            values for comparision
+     * @param aPropertyName property to compare
+     * @param aValues       values for comparision
      */
-    protected InExpression( String aPropertyName,
-                            CMISParameterValue<?>... aValues )
-    {
+    protected InExpression(String aPropertyName,
+                           CMISParameterValue<?>... aValues) {
         this.propertyName = aPropertyName;
         this.values = aValues;
     }
@@ -68,26 +64,24 @@ public class InExpression
      *
      * @see Criterion#toQueryFragment(CMISContext)
      */
-    public String toQueryFragment( CMISContext CMISContext )
-    {
+    public String toQueryFragment(CMISContext CMISContext) {
         List<String> parametersNames = new ArrayList<String>();
 
-        for ( CMISParameterValue<?> v : values )
-        {
-            parametersNames.add( ":" + CMISContext.generateParameterName(
-                                                                     this.propertyName,
-                                                                     v ) );
+        for (CMISParameterValue<?> v : values) {
+            parametersNames.add(":" + CMISContext.generateParameterName(
+                    this.propertyName,
+                    v));
         }
 
-        final String property = CMISContext.prefix( propertyName );
-        
+        final String property = CMISContext.prefix(propertyName);
+
         StringBuilder buffer = new StringBuilder();
-        buffer.append( property );
-        buffer.append( " IN (" );
+        buffer.append(property);
+        buffer.append(" IN (");
 
-        buffer.append( Utils.concatenate( ", ", parametersNames ) );
+        buffer.append(Utils.concatenate(", ", parametersNames));
 
-        buffer.append( ')' );
+        buffer.append(')');
 
         return buffer.toString();
     }

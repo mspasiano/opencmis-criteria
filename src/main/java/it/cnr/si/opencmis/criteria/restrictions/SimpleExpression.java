@@ -18,9 +18,9 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * $Id: SimpleExpression.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.CMISContext;
 import it.cnr.si.opencmis.criteria.CMISParameterValue;
+import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.Utils;
 
 /**
@@ -30,8 +30,7 @@ import it.cnr.si.opencmis.criteria.Utils;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public class SimpleExpression implements Criterion
-{
+public class SimpleExpression implements Criterion {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -45,58 +44,51 @@ public class SimpleExpression implements Criterion
 
     private boolean ignoreCase = false;
 
-    protected SimpleExpression( String aPropertyName, String value, SimpleExpressionOperator anOperator,
-                                MatchMode matchMode )
-    {
-        this( aPropertyName, Utils.constructCMISParameterValue( matchMode.toMatchString( value ) ), anOperator );
+    protected SimpleExpression(String aPropertyName, String value, SimpleExpressionOperator anOperator,
+                               MatchMode matchMode) {
+        this(aPropertyName, Utils.constructCMISParameterValue(matchMode.toMatchString(value)), anOperator);
     }
 
     protected SimpleExpression(
             String aPropertyName,
             CMISParameterValue<?> parameterValue,
-            SimpleExpressionOperator anOperator )
-    {
+            SimpleExpressionOperator anOperator) {
         this.propertyName = aPropertyName;
         this.value = parameterValue;
         this.operator = anOperator;
     }
 
-    public SimpleExpression ignoreCase()
-    {
+    public SimpleExpression ignoreCase() {
         this.ignoreCase = true;
 
         return this;
     }
 
-    public String toQueryFragment( CMISContext CMISContext )
-    {
-        final String property = CMISContext.prefix( propertyName );
+    public String toQueryFragment(CMISContext CMISContext) {
+        final String property = CMISContext.prefix(propertyName);
 
         CMISParameterValue<?> parameterValue = value;
-        if ( ignoreCase )
-        {
-            parameterValue = Utils.constructCMISParameterValue( this.value.getValue().toString().toLowerCase() );
+        if (ignoreCase) {
+            parameterValue = Utils.constructCMISParameterValue(this.value.getValue().toString().toLowerCase());
         }
-        String parameterName = CMISContext.generateParameterName( propertyName, parameterValue );
+        String parameterName = CMISContext.generateParameterName(propertyName, parameterValue);
 
         StringBuilder buffer = new StringBuilder();
 
-        if ( ignoreCase )
-        {
-            buffer.append( "LOWER(" );
+        if (ignoreCase) {
+            buffer.append("LOWER(");
         }
-        buffer.append( property );
-        if ( ignoreCase )
-        {
-            buffer.append( ')' );
+        buffer.append(property);
+        if (ignoreCase) {
+            buffer.append(')');
         }
 
-        buffer.append( ' ' );
-        buffer.append( operator.getStringRepresentation() );
-        buffer.append( ' ' );
+        buffer.append(' ');
+        buffer.append(operator.getStringRepresentation());
+        buffer.append(' ');
 
-        buffer.append( ":" );
-        buffer.append( parameterName );
+        buffer.append(":");
+        buffer.append(parameterName);
 
         return buffer.toString();
     }

@@ -19,7 +19,6 @@ package it.cnr.si.opencmis.criteria.impl;
  */
 
 import it.cnr.si.opencmis.criteria.*;
-import it.spasia.opencmis.criteria.*;
 import org.apache.chemistry.opencmis.client.api.ItemIterable;
 import org.apache.chemistry.opencmis.client.api.OperationContext;
 import org.apache.chemistry.opencmis.client.api.QueryResult;

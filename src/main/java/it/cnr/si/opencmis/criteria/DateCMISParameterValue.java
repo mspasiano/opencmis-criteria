@@ -28,8 +28,7 @@ import java.util.Date;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public class DateCMISParameterValue implements CMISParameterValue<Date>
-{
+public class DateCMISParameterValue implements CMISParameterValue<Date> {
     private static final long serialVersionUID = 1L;
     private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss'Z'");
     /**
@@ -40,11 +39,9 @@ public class DateCMISParameterValue implements CMISParameterValue<Date>
     /**
      * Constructor populating all required data.
      *
-     * @param parameterValue
-     *            value for this holder
+     * @param parameterValue value for this holder
      */
-    public DateCMISParameterValue( Date parameterValue)
-    {
+    public DateCMISParameterValue(Date parameterValue) {
         this.value = parameterValue;
     }
 
@@ -54,18 +51,16 @@ public class DateCMISParameterValue implements CMISParameterValue<Date>
      * @see CMISParameterValue#populateToQuery(java.lang.String,
      *      javax.persistence.Query)
      */
-	public void populateToQuery( String parameterName, StringBuilder query )
-	{
-        query.replace(query.indexOf(parameterName) -1, query.indexOf(parameterName) + parameterName.length(), "TIMESTAMP '"+formatter.format(this.value)+"'" );
-	}
+    public void populateToQuery(String parameterName, StringBuilder query) {
+        query.replace(query.indexOf(parameterName) - 1, query.indexOf(parameterName) + parameterName.length(), "TIMESTAMP '" + formatter.format(this.value) + "'");
+    }
 
     /*
      * (non-Javadoc)
      *
      * @see CMISParameterValue#getValue()
      */
-    public Date getValue()
-    {
+    public Date getValue() {
         return this.value;
     }
 }

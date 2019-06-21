@@ -18,8 +18,8 @@ package it.cnr.si.opencmis.criteria.restrictions;
  * $Id: LogicalExpression.java 1 2010-12-09 11:44:57Z marco.spasiano $
  */
 
-import it.cnr.si.opencmis.criteria.Criterion;
 import it.cnr.si.opencmis.criteria.CMISContext;
+import it.cnr.si.opencmis.criteria.Criterion;
 
 /**
  * Represends logical expression.
@@ -28,8 +28,7 @@ import it.cnr.si.opencmis.criteria.CMISContext;
  * @version $Revision: 1 $
  */
 public class LogicalExpression
-    implements Criterion
-{
+        implements Criterion {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -50,16 +49,12 @@ public class LogicalExpression
     /**
      * Constructs expression with all required data.
      *
-     * @param aLhs
-     *            left hand operand
-     * @param aRhs
-     *            right hand operand
-     * @param anOperator
-     *            logical operator
+     * @param aLhs       left hand operand
+     * @param aRhs       right hand operand
+     * @param anOperator logical operator
      */
-    protected LogicalExpression( Criterion aLhs, Criterion aRhs,
-                                 LogicalExpressionOperator anOperator )
-    {
+    protected LogicalExpression(Criterion aLhs, Criterion aRhs,
+                                LogicalExpressionOperator anOperator) {
         this.lhs = aLhs;
         this.rhs = aRhs;
         this.operator = anOperator;
@@ -70,15 +65,14 @@ public class LogicalExpression
      *
      * @see Criterion#toQueryFragment(CMISContext)
      */
-    public String toQueryFragment( CMISContext CMISContext )
-    {
+    public String toQueryFragment(CMISContext CMISContext) {
         StringBuilder buffer = new StringBuilder();
 
-        buffer.append( this.lhs.toQueryFragment( CMISContext ) );
-        buffer.append( ' ' );
-        buffer.append( this.operator.getStringRepresentation() );
-        buffer.append( ' ' );
-        buffer.append( this.rhs.toQueryFragment( CMISContext ) );
+        buffer.append(this.lhs.toQueryFragment(CMISContext));
+        buffer.append(' ');
+        buffer.append(this.operator.getStringRepresentation());
+        buffer.append(' ');
+        buffer.append(this.rhs.toQueryFragment(CMISContext));
 
         return buffer.toString();
     }

@@ -26,8 +26,7 @@ import java.io.Serializable;
  * @author <a href="mailto:marco.spasiano@gmail.com">Marco Spasiano</a>
  * @version $Revision: 1 $
  */
-public class Order implements Serializable
-{
+public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -41,81 +40,68 @@ public class Order implements Serializable
     private final boolean descending;
 
     /**
-     * Constructs new ascending order element.
-     *
-     * @param propertyName
-     *            property used for ordering
-     * @return ascending order element for specified property
-     */
-    public static Order ascending( String propertyName )
-    {
-        return new Order( propertyName, false );
-    }
-
-    /**
-     * Constructs new ascending order element.
-     *
-     * @param propertyName
-     *            property used for ordering
-     * @return ascending order element for specified property
-     */
-    public static Order asc( String propertyName )
-    {
-        return ascending( propertyName );
-    }
-
-    /**
-     * Constructs new descending order element.
-     *
-     * @param propertyName
-     *            property used for ordering
-     * @return descending order element for specified property
-     */
-    public static Order descending( String propertyName )
-    {
-        return new Order( propertyName, true );
-    }
-
-    /**
-     * Constructs new descending order element.
-     *
-     * @param propertyName
-     *            property used for ordering
-     * @return descending order element for specified property
-     */
-    public static Order desc( String propertyName )
-    {
-        return descending( propertyName );
-    }
-
-    /**
      * Constructs new order element for specified property and direction.
      *
-     * @param aPropertyName
-     *            property used for ordering
-     * @param descendingFlag
-     *            asc or desc
+     * @param aPropertyName  property used for ordering
+     * @param descendingFlag asc or desc
      */
-    protected Order( String aPropertyName, boolean descendingFlag )
-    {
+    protected Order(String aPropertyName, boolean descendingFlag) {
         this.propertyName = aPropertyName;
         this.descending = descendingFlag;
     }
 
     /**
+     * Constructs new ascending order element.
+     *
+     * @param propertyName property used for ordering
+     * @return ascending order element for specified property
+     */
+    public static Order ascending(String propertyName) {
+        return new Order(propertyName, false);
+    }
+
+    /**
+     * Constructs new ascending order element.
+     *
+     * @param propertyName property used for ordering
+     * @return ascending order element for specified property
+     */
+    public static Order asc(String propertyName) {
+        return ascending(propertyName);
+    }
+
+    /**
+     * Constructs new descending order element.
+     *
+     * @param propertyName property used for ordering
+     * @return descending order element for specified property
+     */
+    public static Order descending(String propertyName) {
+        return new Order(propertyName, true);
+    }
+
+    /**
+     * Constructs new descending order element.
+     *
+     * @param propertyName property used for ordering
+     * @return descending order element for specified property
+     */
+    public static Order desc(String propertyName) {
+        return descending(propertyName);
+    }
+
+    /**
      * @return property used for ordering.
      */
-    public String getPropertyName()
-    {
+    public String getPropertyName() {
         return this.propertyName;
     }
 
     /**
      * @return <code>true</code> if this is descending order,
-     *         <code>false</code> otherwise
+     * <code>false</code> otherwise
      */
-    public boolean isDescending()
-    {
+    public boolean isDescending() {
         return this.descending;
     }
 
