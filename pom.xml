@@ -4,7 +4,7 @@
     <prerequisites>
         <maven>2.0.4</maven>
     </prerequisites>
-    <groupId>it.cnr.spasia</groupId>
+    <groupId>it.cnr.si</groupId>
     <artifactId>opencmis-criteria</artifactId>
     <packaging>jar</packaging>
     <name>OpenCMIS Criteria</name>
