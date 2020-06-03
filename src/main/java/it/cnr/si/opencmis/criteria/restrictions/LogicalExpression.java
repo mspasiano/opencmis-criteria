@@ -67,13 +67,13 @@ public class LogicalExpression
      */
     public String toQueryFragment(CMISContext CMISContext) {
         StringBuilder buffer = new StringBuilder();
-
+        buffer.append('(');
         buffer.append(this.lhs.toQueryFragment(CMISContext));
         buffer.append(' ');
         buffer.append(this.operator.getStringRepresentation());
         buffer.append(' ');
         buffer.append(this.rhs.toQueryFragment(CMISContext));
-
+        buffer.append(')');
         return buffer.toString();
     }
 }
